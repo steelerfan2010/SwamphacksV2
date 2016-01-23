@@ -1,2 +1,5 @@
 This link helps with changing root directory issue with Apache.
 http://askubuntu.com/questions/517686/403-forbidden-when-changing-apache2-document-root/517694
+
+This link shows you how to transfer (and run) sql files from the terminal
+https://dev.mysql.com/doc/refman/5.7/en/mysql-batch-commands.html
