@@ -104,12 +104,26 @@ function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNu
 	for(var i = 0; i < 5; i++){
 		numsObj = pickNumber(regNumList);
 		regNumList = numsObj.adjustedNumbers;
-		regularPrediction.push(numsObj.randNum);
+		var randNumString = numsObj.randNum.toString();
+		if(randNumString.length == 1){
+			randNumString = "0"+randNumString;
+		}
+		regularPrediction.push(randNumString);
 	}
 	
-	var powerballPrediction = pickNumber(pbNumList).randNum;
+	var powerballPrediction = pickNumber(pbNumList).randNum.toString();
+	if(powerballPrediction.length == 1){
+		powerballPrediction = "0"+powerballPrediction;
+	}
 	
-	return {regularPrediction:regularPrediction, powerballPrediction:powerballPrediction};
+	document.getElementById("n1").innerHTML = regularPrediction[0];
+	document.getElementById("n2").innerHTML = regularPrediction[1];
+	document.getElementById("n3").innerHTML = regularPrediction[2];
+	document.getElementById("n4").innerHTML = regularPrediction[3];
+	document.getElementById("n5").innerHTML = regularPrediction[4];
+	document.getElementById("pb").innerHTML = powerballPrediction;
+	
+	//return {regularPrediction:regularPrediction, powerballPrediction:powerballPrediction};
 	
 }
 
@@ -140,15 +154,17 @@ var havePbNums = false;
 function getRegNums(json){
 	regNums = json;
 	haveRegNums = true;
-	if(haveRegNums && havePbNums){
-		console.log(generatePrediction(regNums, pbNums, 69, 26));
-	}
+	doPrediction();
 }
 
 function getPbNums(json){
 	pbNums = json;
 	havePbNums = true;
+	doPrediction();
+}
+
+function doPrediction(){
 	if(haveRegNums && havePbNums){
-		console.log(generatePrediction(regNums, pbNums, 69, 26));
+		generatePrediction(regNums, pbNums, 69, 26);
 	}
 }
