@@ -17,22 +17,9 @@
 
 			var json = [{"regularNumber":"2","frequency":"5"},{"regularNumber":"3","frequency":"2"},{"regularNumber":"4","frequency":"3"},{"regularNumber":"5","frequency":"3"},{"regularNumber":"6","frequency":"3"},{"regularNumber":"7","frequency":"3"},{"regularNumber":"8","frequency":"2"},{"regularNumber":"9","frequency":"2"},{"regularNumber":"10","frequency":"2"},{"regularNumber":"11","frequency":"1"},{"regularNumber":"12","frequency":"4"},{"regularNumber":"13","frequency":"2"},{"regularNumber":"14","frequency":"3"},{"regularNumber":"15","frequency":"2"},{"regularNumber":"16","frequency":"6"},{"regularNumber":"17","frequency":"3"},{"regularNumber":"18","frequency":"2"},{"regularNumber":"19","frequency":"4"},{"regularNumber":"20","frequency":"4"},{"regularNumber":"21","frequency":"1"},{"regularNumber":"22","frequency":"1"},{"regularNumber":"23","frequency":"1"},{"regularNumber":"24","frequency":"1"},{"regularNumber":"25","frequency":"2"},{"regularNumber":"26","frequency":"3"},{"regularNumber":"27","frequency":"4"},{"regularNumber":"28","frequency":"1"},{"regularNumber":"29","frequency":"5"},{"regularNumber":"30","frequency":"4"},{"regularNumber":"31","frequency":"4"},{"regularNumber":"32","frequency":"5"},{"regularNumber":"33","frequency":"2"},{"regularNumber":"34","frequency":"2"},{"regularNumber":"35","frequency":"1"},{"regularNumber":"36","frequency":"1"},{"regularNumber":"37","frequency":"2"},{"regularNumber":"38","frequency":"2"},{"regularNumber":"39","frequency":"3"},{"regularNumber":"40","frequency":"5"},{"regularNumber":"41","frequency":"3"},{"regularNumber":"42","frequency":"4"},{"regularNumber":"43","frequency":"2"},{"regularNumber":"44","frequency":"4"},{"regularNumber":"45","frequency":"2"},{"regularNumber":"46","frequency":"3"},{"regularNumber":"47","frequency":"7"},{"regularNumber":"48","frequency":"3"},{"regularNumber":"49","frequency":"1"},{"regularNumber":"50","frequency":"4"},{"regularNumber":"51","frequency":"3"},{"regularNumber":"52","frequency":"3"},{"regularNumber":"53","frequency":"2"},{"regularNumber":"54","frequency":"2"},{"regularNumber":"55","frequency":"4"},{"regularNumber":"56","frequency":"4"},{"regularNumber":"57","frequency":"5"},{"regularNumber":"58","frequency":"2"},{"regularNumber":"59","frequency":"3"},{"regularNumber":"60","frequency":"1"},{"regularNumber":"61","frequency":"2"},{"regularNumber":"62","frequency":"4"},{"regularNumber":"63","frequency":"3"},{"regularNumber":"64","frequency":"4"},{"regularNumber":"65","frequency":"2"},{"regularNumber":"66","frequency":"2"},{"regularNumber":"67","frequency":"2"},{"regularNumber":"68","frequency":"4"},{"regularNumber":"69","frequency":"4"}]
 
-			var num = extractRegularNumbers(json)
-			var freq = extractFrequency(json)
 
-			var data = {
-				labels: num,
-				series: [
-					freq
-				]
-			};
+		graphRegularFrequency(json)
 
-			var options = {
-				width: 1000,
-				height: 200
-			};
-
-			new Chartist.Bar('#chart', data, options);
 		</script>
 
 		<div class="ct-chart" id="chart2"> </div>
@@ -46,22 +33,8 @@ var json2 = [{"powerballNumber":"1","frequency":"3"},{"powerballNumber":"2","fre
 :"20","frequency":"1"},{"powerballNumber":"21","frequency":"2"},{"powerballNumber":"22","frequency":"2"
 },{"powerballNumber":"24","frequency":"2"},{"powerballNumber":"25","frequency":"1"},{"powerballNumber"
 :"27","frequency":"1"}]
-			var num = extractPowerballNumbers(json2)
-			var freq = extractFrequency(json2)
 
-			var data = {
-				labels: num,
-				series: [
-					freq
-				]
-			};
-
-			var options = {
-				width: 1000,
-				height: 200
-			};
-
-			new Chartist.Bar('#chart2', data, options);
+		graphPowerballFrequency(json2)
 		</script>
 
 
