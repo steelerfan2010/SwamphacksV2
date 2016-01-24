@@ -17,26 +17,28 @@
 		<title>Will's webpage</title>
 	</head>
 	<body>
-
-		<div>
+		<div class="blue">
 			<h1 align="center">Predict Powerball</h1>
-		</div>		
-
-		<div align="center" class="ct-chart" id="chart"> 
-			<h2 align="center">Frequency of Regular Numbers</h2>
 		</div>
-		<script>
-			getPowerballQuery("regular", graphRegularFrequency)
-		</script>
+		<div class="orange">
+			<div align="center" class="ct-chart" id="chart"> 
+				<h2 align="center">Frequency of Regular Numbers</h2>
+			</div>
+			<script>
+				getPowerballQuery("regular", graphRegularFrequency)
+			</script>
 
-		<div align="center" class="ct-chart" id="chart2">
-			<h2 align="center">Frequency of Powerball Number</h2>
 		</div>
-		<script>
-			getPowerballQuery("powerball", graphPowerballFrequency)
-		</script>
-
-		<div align="center">
+		<div class="blue">
+			<div align="center" class="ct-chart" id="chart2">
+				<h2 align="center">Frequency of Powerball Number</h2>
+			</div>
+			<script>
+				getPowerballQuery("powerball", graphPowerballFrequency)
+			</script>
+		</div>
+		
+		<div align="center" class="orange">
 			<h2> Your Numbers: </h2>
 			<div class="numberCircle a">30</div>
 			<div class="numberCircle a">40</div>
@@ -47,17 +49,7 @@
 
 		<br><br>
 		<button type="button" class="btn btn-success">Generate New Numbers</button>
+		<br><br>
 		</div>
-
-<!--
-		<div class="row">
-			<div class="col-xs-2">.col-md-4</div>
-			<div class="col-xs-8">
-				<div class="circle">30</div>
-				<div class="cirlce">10</div>
-			</div>
-			<div class="col-xs-2">.col-md-4</div>
-		</div>	
--->
 	</body>
 </html>		
