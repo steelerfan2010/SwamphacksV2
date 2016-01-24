@@ -77,3 +77,78 @@ function getPowerballQuery(numberType, callback) {
 		}
 	});
 }
+
+function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNum){
+	regNumList = [];
+	for(i = 1; i <= maxRegNum; i++){
+		regNumList.push(i);
+	}
+	for(i = 0; i < regularNumbers.length; i++){
+		for(j = 0; j < regularNumbers[i].frequency; j++){
+			regNumList.push(parseInt(regularNumbers[i].regularNumber));
+		}
+	}
+	
+	pbNumList = [];
+	for(i = 1; i <= maxPbNum; i++){
+		pbNumList.push(i);
+	}
+	for(i = 0; i < powerballNumbers.length; i++){
+		for(j = 0; j < powerballNumbers[i].frequency; j++){
+			pbNumList.push(parseInt(powerballNumbers[i].powerballNumber));
+		}
+	}
+	
+	var numsObj;
+	var regularPrediction = [];
+	for(var i = 0; i < 5; i++){
+		numsObj = pickNumber(regNumList);
+		regNumList = numsObj.adjustedNumbers;
+		regularPrediction.push(numsObj.randNum);
+	}
+	
+	var powerballPrediction = pickNumber(pbNumList).randNum;
+	
+	return {regularPrediction:regularPrediction, powerballPrediction:powerballPrediction};
+	
+}
+
+/*Array.prototype.sum = function () {
+    for(var total = 0,l=this.length;l--;total+=this[l]); return total;
+}*/
+
+function pickNumber(numbers){
+	var len = numbers.length;
+	var randIndex = Math.floor((Math.random() * len));
+	var randNum = numbers[randIndex];
+	
+	var adjustedNumbers = [];
+	for(var i = 0; i < numbers.length; i++){
+		if(numbers[i] != randNum){
+			adjustedNumbers.push(numbers[i]);
+		}
+	}
+	
+	return {randNum:randNum, adjustedNumbers:adjustedNumbers};
+}
+
+var regNums;
+var pbNums;
+var haveRegNums = false;
+var havePbNums = false;
+
+function getRegNums(json){
+	regNums = json;
+	haveRegNums = true;
+	if(haveRegNums && havePbNums){
+		console.log(generatePrediction(regNums, pbNums, 69, 26));
+	}
+}
+
+function getPbNums(json){
+	pbNums = json;
+	havePbNums = true;
+	if(haveRegNums && havePbNums){
+		console.log(generatePrediction(regNums, pbNums, 69, 26));
+	}
+}
