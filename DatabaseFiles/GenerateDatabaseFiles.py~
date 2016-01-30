@@ -29,7 +29,7 @@ with open(filename) as f:
 	 target1.write("\n")
 
 	 while(count < 6):
-		target1.write("INSERT INTO RegularNumbers (theDate, regularNumber) VALUES (DATE '" + eachLine[0] + "', " + eachLine[count] + ");")
+		target1.write("INSERT INTO RegularNumbers (theDate, regularNumber) VALUES ('" + eachLine[0] + "', " + eachLine[count] + ");")
 		target1.write("\n")
 		count = count + 1
 
