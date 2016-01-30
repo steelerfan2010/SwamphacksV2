@@ -16,5 +16,3 @@ create table Multiplier (
 	theDate date,
 	multiplier int
 );
-
-SELECT SESSION_ID FROM DBA_DML_LOCKS WHERE NAME = Table RegularNumbers;
