@@ -1,0 +1,54 @@
+.numberCircle {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+
+    font: 32px Arial, sans-serif;
+}
+
+.powerball {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+
+    background: red;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+
+    font: 32px Arial, sans-serif;
+}
+
+.a {
+	display: inline;
+}
+
+.circle {
+	width:50px;
+	height:50px;
+	border-radius:50%;
+	font-size:10px;
+	color:#fff;
+	line-height:500px;
+	text-align:center;
+	background:#000
+}
+
+.orange {
+	background-color: #f3c07f;
+}
+
+.blue {
+	background-color: #7fb2f3;
+}
