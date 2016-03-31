@@ -4,10 +4,10 @@
 
 include_once("credentials.php");
 
-//ini_set('display_errors', 'On');
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Create connection
 $connection = oci_connect($username = CISE_USER,
@@ -16,7 +16,7 @@ $connection = oci_connect($username = CISE_USER,
 
 //Select which type of query
 $sql = "";
-switch($_GET["numberType"]){
+/*switch($_GET["numberType"]){
 	case "regular":
 		$sql = "SELECT regularNumber, COUNT(*) AS frequency 
 				FROM RegularNumbers 
@@ -30,6 +30,11 @@ switch($_GET["numberType"]){
 				WHERE theDate >= TO_DATE('2015-09-07','YYYY-MM-DD') 
 				GROUP BY powerballNumber
 				ORDER BY powerballNumber ASC";
+		break;
+}*/
+switch($_GET["queryType"]){
+	case "frequency":
+		$sql = getFrequencyQuery($_GET["startDate"], $_GET["endDate"], $_GET["numberType"]);
 		break;
 }
 
@@ -47,5 +52,16 @@ print json_encode($rows);
 //Close connection
 oci_free_statement($statement);
 oci_close($connection);
+
+function getFrequencyQuery($startDate, $endDate, $numberType){
+	$sql = "SELECT lottoNumber, COUNT(*) AS frequency 
+			FROM Numbers 
+			WHERE drawingDate >= TO_DATE('" . $startDate . "','YYYY-MM-DD')
+				AND drawingDate <= TO_DATE('" . $endDate . "','YYYY-MM-DD')
+				AND numberType = " . $numberType . "
+			GROUP BY lottoNumber
+			ORDER BY lottoNumber ASC";
+	return $sql;
+}
 
 ?>

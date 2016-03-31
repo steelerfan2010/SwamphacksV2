@@ -1,18 +1,31 @@
-drop table RegularNumbers;
-drop table PowerballNumbers;
-drop table Multiplier;
+drop table Jackpots;
+drop table Numbers;
+drop table GeneratedTickets;
+drop table RandomTickets;
 
-create table RegularNumbers (
-	theDate date,
-	regularNumber int
+create table Jackpots (
+    drawingDate date,
+    systemNumber int,
+    jackpotAmount int
 );
 
-create table PowerballNumbers (
-	theDate date,
-	powerballNumber int
+create table Numbers (
+	drawingDate date,
+    lottoNumber int,
+    numberType int,
+    systemNumber int 
 );
 
-create table Multiplier (
-	theDate date,
-	multiplier int
+create table GeneratedTickets (
+	tid int,
+    lottoNumber int,
+    numberType int,
+    systemNumber int 
+);
+
+create table RandomTickets (
+	tid int,
+    lottoNumber int,
+    numberType int,
+    systemNumber int 
 );

@@ -2,7 +2,7 @@ function extractRegularNumbers(json) {
 	var numbers = []
 
 	for(var i in json) {
-		numbers.push(json[i].REGULARNUMBER)
+		numbers.push(json[i].LOTTONUMBER)
 	}
 
 	return numbers
@@ -12,7 +12,7 @@ function extractPowerballNumbers(json) {
 	var numbers = []
 
 	for(var i in json) {
-		numbers.push(json[i].POWERBALLNUMBER)
+		numbers.push(json[i].LOTTONUMBER)
 	}
 
 	return numbers
@@ -66,12 +66,16 @@ function graphPowerballFrequency(json) {
 	new Chartist.Bar('#chart2', data, options);
 }
 
-function getPowerballQuery(numberType, callback) {
+function doFrequencyQuery(startDate, endDate, numberType, callback) {
 	$.ajax({
 		type: "GET", //Type of post
 		url: "query.php", //Where it is sent
 		dataType: "json",
-		data: {'numberType':numberType}, //This is sent TO THE SERVER
+		data: {'queryType':'frequency',
+			   'startDate':startDate,
+			   'endDate':endDate,
+			   'numberType':numberType
+			  }, //This is sent TO THE SERVER
 		success: function (msg) { //Msg is returned FROM THE SERVER!
 			callback(msg);
 		}
