@@ -116,14 +116,7 @@ function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNu
 		powerballPrediction = "0"+powerballPrediction;
 	}
 	
-	document.getElementById("n1").innerHTML = regularPrediction[0];
-	document.getElementById("n2").innerHTML = regularPrediction[1];
-	document.getElementById("n3").innerHTML = regularPrediction[2];
-	document.getElementById("n4").innerHTML = regularPrediction[3];
-	document.getElementById("n5").innerHTML = regularPrediction[4];
-	document.getElementById("pb").innerHTML = powerballPrediction;
-	
-	//return {regularPrediction:regularPrediction, powerballPrediction:powerballPrediction};
+	return {regularPrediction:regularPrediction, powerballPrediction:powerballPrediction};
 	
 }
 
@@ -165,6 +158,12 @@ function getPbNums(json){
 
 function doPrediction(){
 	if(haveRegNums && havePbNums){
-		generatePrediction(regNums, pbNums, 69, 26);
+		var prediction = generatePrediction(regNums, pbNums, 69, 26);
+		document.getElementById("n1").innerHTML = prediction.regularPrediction[0];
+		document.getElementById("n2").innerHTML = prediction.regularPrediction[1];
+		document.getElementById("n3").innerHTML = prediction.regularPrediction[2];
+		document.getElementById("n4").innerHTML = prediction.regularPrediction[3];
+		document.getElementById("n5").innerHTML = prediction.regularPrediction[4];
+		document.getElementById("pb").innerHTML = prediction.powerballPrediction;
 	}
 }
