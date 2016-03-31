@@ -67,7 +67,23 @@ function graphPowerballFrequency(json) {
 }
 
 function doFrequencyQuery(startDate, endDate, numberType, callback) {
-	$.ajax({
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'frequency',
+			   'startDate':startDate,
+			   'endDate':endDate,
+			   'numberType':numberType
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
+function doFrequencyQuery2(startDate, endDate, numberType, callback) {
+	return $.ajax({
 		type: "GET", //Type of post
 		url: "query.php", //Where it is sent
 		dataType: "json",
