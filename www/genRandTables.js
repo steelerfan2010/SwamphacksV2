@@ -1,6 +1,6 @@
 function genPage(){
 	var id = 1;
-	var count = 10;
+	var count = 2000;
 	
 	//document.getElementById("sys1").innerHTML = JSON.stringify(randPrediction(69,26));
 	
@@ -9,17 +9,17 @@ function genPage(){
 	}*/
 	
 	genSystem("1990-01-01", "1997-11-01", 45, 45, 1, count, id);
-	id = id + 12*count;
+	id = id + count;
 	genSystem("1997-11-05", "2002-10-05", 49, 42, 2, count, id);
-	id = id + 12*count;
+	id = id + count;
 	genSystem("2002-10-09", "2005-08-27", 53, 42, 3, count, id);
-	id = id + 12*count;
+	id = id + count;
 	genSystem("2005-08-31", "2009-01-03", 55, 42, 4, count, id);
-	id = id + 12*count;
+	id = id + count;
 	genSystem("2009-01-07", "2012-01-14", 59, 39, 5, count, id);
-	id = id + 12*count;
+	id = id + count;
 	genSystem("2012-01-18", "2015-10-03", 59, 35, 6, count, id);
-	id = id + 12*count;
+	id = id + count;
 	genSystem("2015-10-07", "2020-01-01", 69, 26, 7, count, id);
 }
 
@@ -28,21 +28,24 @@ function genSystem(sDate, eDate, maxReg, maxPb, sysNum, count, idStart){
 	var predObj = {regNums: null, pbNums: null, maxReg: maxReg, maxPb: maxPb};
 	var a = doFrequencyQuery(sDate, eDate, 0, setRegNums(predObj));
 	var b = doFrequencyQuery(sDate, eDate, 1, setPbNums(predObj));
+	var fullStr = "";
 
 	$.when(a,b).then(function(){
 		for(var i=0; i<count; i++){
 			var prediction = generatePrediction(predObj.regNums, predObj.pbNums, predObj.maxReg, predObj.maxPb);
-			var str = genTableInsertion("GeneratedTickets", prediction, idStart, sysNum);
-			document.getElementById("sys"+sysNum).innerHTML = document.getElementById("sys"+sysNum).innerHTML + str;
-			idStart = idStart + 6;
+			var str = genTableInsertion("GeneratedTickets", prediction, idStart+i, sysNum);
+			fullStr = fullStr + str;
+			//document.getElementById("sys"+sysNum).innerHTML = document.getElementById("sys"+sysNum).innerHTML + str;
 		}
 		
 		for(var i=0; i<count; i++){
 			var prediction = randPrediction(maxReg,maxPb);
-			var str = genTableInsertion("RandomTickets", prediction, idStart, sysNum);
-			document.getElementById("sys"+sysNum).innerHTML = document.getElementById("sys"+sysNum).innerHTML + str;
-			idStart = idStart + 6;
+			var str = genTableInsertion("RandomTickets", prediction, idStart+i, sysNum);
+			fullStr = fullStr + str;
+			//document.getElementById("sys"+sysNum).innerHTML = document.getElementById("sys"+sysNum).innerHTML + str;
 		}
+		
+		document.getElementById("sys"+sysNum).innerHTML = fullStr;
 	});
 		
 }
@@ -101,10 +104,10 @@ function genTableInsertion(tableName, prediction, tid, system){
 	
 	for(var i=0; i<5; i++){
 		str = str + "INSERT INTO " + tableName + " (tid, lottoNumber, numberType, systemNumber) VALUES (" 
-			+ (tid+i) + ", " + prediction.regularPrediction[i] + ", 0, " + system + ");<br>";
+			+ tid + ", " + prediction.regularPrediction[i] + ", 0, " + system + ");<br>";
 	}
 	str = str + "INSERT INTO " + tableName + " (tid, lottoNumber, numberType, systemNumber) VALUES (" 
-		+ (tid+5) + ", " + prediction.powerballPrediction + ", 1, " + system + ");<br><br>";
+		+ tid + ", " + prediction.powerballPrediction + ", 1, " + system + ");<br><br>";
 	
 	return str;
 	
