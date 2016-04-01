@@ -82,7 +82,7 @@ function doFrequencyQuery(startDate, endDate, numberType, callback) {
 	});
 }
 
-function doFrequencyQuery2(startDate, endDate, numberType, callback) {
+/*function doFrequencyQuery2(startDate, endDate, numberType, callback) {
 	return $.ajax({
 		type: "GET", //Type of post
 		url: "query.php", //Where it is sent
@@ -96,7 +96,7 @@ function doFrequencyQuery2(startDate, endDate, numberType, callback) {
 			callback(msg);
 		}
 	});
-}
+}*/
 
 function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNum){
 	regNumList = [];

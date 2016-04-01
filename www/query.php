@@ -16,22 +16,6 @@ $connection = oci_connect($username = CISE_USER,
 
 //Select which type of query
 $sql = "";
-/*switch($_GET["numberType"]){
-	case "regular":
-		$sql = "SELECT regularNumber, COUNT(*) AS frequency 
-				FROM RegularNumbers 
-				WHERE theDate >= TO_DATE('2015-09-07','YYYY-MM-DD') 
-				GROUP BY regularNumber
-				ORDER BY regularNumber ASC";
-		break;
-	case "powerball":
-		$sql = "SELECT powerballNumber, COUNT(*) AS frequency 
-				FROM PowerballNumbers 
-				WHERE theDate >= TO_DATE('2015-09-07','YYYY-MM-DD') 
-				GROUP BY powerballNumber
-				ORDER BY powerballNumber ASC";
-		break;
-}*/
 switch($_GET["queryType"]){
 	case "frequency":
 		$sql = getFrequencyQuery($_GET["startDate"], $_GET["endDate"], $_GET["numberType"]);
@@ -47,6 +31,8 @@ $rows = array();
 while (($row = oci_fetch_object($statement))) {
     $rows[] = $row;
 }
+
+//Return JSON.
 print json_encode($rows);
 
 //Close connection
