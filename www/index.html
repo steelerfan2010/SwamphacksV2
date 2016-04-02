@@ -17,6 +17,9 @@
 
 		<meta charset="utf-8">
 		<title>Will's webpage</title>
+		<script>
+			populateMainPage();
+		</script>
 	</head>
 	<body>
 		<div class="blue">
@@ -26,20 +29,11 @@
 			<div align="center" class="ct-chart" id="chart"> 
 				<h2 align="center">Frequency of Regular Numbers</h2>
 			</div>
-			<script>
-				doFrequencyQuery("2015-09-07", "2016-09-07", 0, graphRegularFrequency)
-				doFrequencyQuery("2015-09-07", "2016-09-07", 0, getRegNums)
-			</script>
-
 		</div>
 		<div class="blue">
 			<div align="center" class="ct-chart" id="chart2">
 				<h2 align="center">Frequency of Powerball Number</h2>
 			</div>
-			<script>
-				doFrequencyQuery("2015-09-07", "2016-09-07", 1, graphPowerballFrequency)
-				doFrequencyQuery("2015-09-07", "2016-09-07", 1, getPbNums)
-			</script>
 		</div>
 		
 		<div align="center" class="orange">
