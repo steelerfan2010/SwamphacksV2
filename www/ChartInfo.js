@@ -2,6 +2,7 @@ function extractRegularNumbers(json) {
 	var numbers = []
 
 	for(var i in json) {
+        console.log(json[i].LOTTONUMBER)
 		numbers.push(json[i].LOTTONUMBER)
 	}
 
@@ -29,6 +30,7 @@ function extractFrequency(json) {
 }
 
 function graphRegularFrequency(json) {
+    console.log(json);
 	var num = extractRegularNumbers(json)
 	var freq = extractFrequency(json)
 
@@ -74,13 +76,13 @@ var havePbNums = false;
 function getRegNums(json){
 	regNums = json;
 	haveRegNums = true;
-	doPrediction();
+	//doPrediction();
 }
 
 function getPbNums(json){
 	pbNums = json;
 	havePbNums = true;
-	doPrediction();
+	//doPrediction();
 }
 
 function doPrediction(){
@@ -97,14 +99,17 @@ function doPrediction(){
 
 function populateMainPage(){
 
-	var a = doFrequencyQuery("2015-09-07", "2016-09-07", 0, setRegNums);
-	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, setPbNums);
-
+    console.log("in pop");
+	var a = doFrequencyQuery("2015-09-07", "2016-09-07", 0, getRegNums);
+	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, getPbNums);
+    
+    console.log("done a b");
 	$.when(a,b).then(function(){
-
+        console.log("graph!");
+        console.log(regNums);
 		graphRegularFrequency(regNums);
 		graphPowerballFrequency(pbNums);
-		doPrediction();
+//		doPrediction();
 
 	});
 
