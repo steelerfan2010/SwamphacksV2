@@ -56,6 +56,10 @@ header {
     padding: 100px;
 }
 
+.padSection3 {
+    padding: 200px;
+}
+
 .bg-primary {
     background: #00D8F0;
 }
@@ -81,4 +85,35 @@ h1 {
 hr {
     border-color: black;
     border-width: 5px;
+}
+
+.a {
+    display: inline;
+}
+.numberCircle {
+    background: #fff none repeat scroll 0 0;
+    border: 2px solid #666;
+    border-radius: 50%;
+    color: #666;
+    font: 32px Arial,sans-serif;
+    height: 56px;
+    padding: 8px;
+    text-align: center;
+    width: 56px;
+}
+
+.powerball {
+    background: red none repeat scroll 0 0;
+    border: 2px solid #666;
+    border-radius: 50%;
+    color: #666;
+    font: 32px Arial,sans-serif;
+    height: 56px;
+    padding: 8px;
+    text-align: center;
+    width: 56px;
+}
+
+.container2 {
+    padding: 85px;
 }
