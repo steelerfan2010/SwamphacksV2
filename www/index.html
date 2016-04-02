@@ -1,59 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.min.css">
-		<script type="text/javascript" src="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.js"></script>
-		<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		
-		<script type="text/javascript" src="alg.js"></script>
-		<script type="text/javascript" src="queries.js"></script>
-		<script type="text/javascript" src="ChartInfo.js"></script>
-		<link rel=stylesheet href="MainPage.css" type="text/css" media="screen">
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="bootstrap.min.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="home.css" type="text/css">
 
-		<meta charset="utf-8">
-		<title>Will's webpage</title>
-	</head>
-	<body>
-		<div class="blue">
-			<h1 align="center">Predict Powerball</h1>
+	<!-- Chartist js -->
+	<link rel="stylesheet" type="text/css" href="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.min.css">
+	<script type="text/javascript" src="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.js"></script>
+
+	<!-- My javascript -->
+    <script type="text/javascript" src="genRandTables.js"></script>
+	<script type="text/javascript" src="ChartInfo.js"></script>
+    <script type="text/javascript" src="queries.js"></script>
+
+</head>
+<body>
+
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbarId">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand page-scroll" href="#page-top">Powerball Predictor</a>
 		</div>
-		<div class="orange">
-			<div align="center" class="ct-chart" id="chart"> 
-				<h2 align="center">Frequency of Regular Numbers</h2>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a class="" href="#interestingFacts">Interesting Facts</a>
+				</li>
+				<li>
+					<a class="" href="#dynamicQueries">Dynamic Queries</a>
+				</li>
+				<li>
+					<a class="" href="#comparisonToRandomNumbers">Comparison To Random Numbers</a>
+				</li>
+				<li>
+					<a class="" href="#feelingLucky">Feeling Lucky</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header>
+	<div class="background"></div>
+	<div class="container text-center">
+		<br><br><br><br>
+		<br><br><br><br>
+		<strong>
+			<h1>Powerball Predictor</h1>
+			<hr width="25%">
+			<p class="pawel">Pawel is going to write a nice description here. Pawel is going to write a nice description here Pawel is going to write a nice description here </p
+		</strong>
+	</div>
+</header>
+
+<section class="bg-secondary padSection" id="interestingFacts">
+
+	<div class="container text-center">
+		<h1>Interesting Facts</h1>
+	</div>
+
+	<div class="ct-chart text-center" id="chart">
+		<h2>Frequency of Regular Numbers</h2>
+	</div>
+
+	<script>
+
+    </script>
+
+	<div class="ct-chart text-center" id="chart2">
+		<h2>Frequency of rEG Numbers</h2>
+	</div>
+
+	<script>
+            populateMainPage()
+    </script>
+
+</section>
+
+
+<section class="bg-primary padSection" id="dynamicQueries">
+	<div class="container">
+		<div class="text-center">
+			<h1>Dynamic Queries</h1>
+		</div>
+		<div class="container text-center">
+			<div class="col-lg-3">
+				<h3>System Number</h3>
+				<select class="form-control">
+					<option value="one">One</option>
+					<option value="two">Two</option>
+					<option value="three">Three</option>
+					<option value="four">Four</option>
+					<option value="five">Five</option>
+					<option value="six">Six</option>
+					<option value="seven">Seven</option>
+				</select>
 			</div>
-			<script>
-				doFrequencyQuery("2015-09-07", "2016-09-07", 0, graphRegularFrequency)
-				doFrequencyQuery("2015-09-07", "2016-09-07", 0, getRegNums)
-			</script>
 
-		</div>
-		<div class="blue">
-			<div align="center" class="ct-chart" id="chart2">
-				<h2 align="center">Frequency of Powerball Number</h2>
+			<div class="col-lg-3 ">
+				<h3>Select a Date</h3>
+				<select class="form-control">
+					<option value="one">1</option>
+					<option value="two">2</option>
+					<option value="three">3</option>
+					<option value="four">4</option>
+					<option value="five">5</option>
+					<option value="six">6</option>
+					<option value="seven">7</option>
+				</select>
 			</div>
-			<script>
-				doFrequencyQuery("2015-09-07", "2016-09-07", 1, graphPowerballFrequency)
-				doFrequencyQuery("2015-09-07", "2016-09-07", 1, getPbNums)
-			</script>
-		</div>
-		
-		<div align="center" class="orange">
-			<h2> Your Numbers: </h2>
-			<div class="numberCircle a" id="n1">30</div>
-			<div class="numberCircle a" id="n2">40</div>
-			<div class="numberCircle a" id="n3">50</div>
-			<div class="numberCircle a" id="n4">60</div>
-			<div class="numberCircle a" id="n5">70</div>
-			<div class="powerball a" id="pb">13</div>
 
-		<br><br>
-		<button type="button" class="btn btn-success" onclick='doPrediction();'>Generate New Numbers</button>
-		<br><br>
+			<div class="col-lg-3 ">
+				<h3>Some Bullshit</h3>
+				<div class="input-group">
+					<input type="text" class="form-control col-md-offset-1" placeholder="Enter Number 1-26" aria-describedby="basic-addon1">
+				</div>
+			</div>
+
+			<div class="col-lg-3 text-center">
+				<h3>Run Your Query</h3>
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default">Search</button>
+				</div>
+			</div>
 		</div>
-	</body>
-</html>		
+
+	</div>
+</section>
+
+<section class="bg-secondary padSection" id="comparisonToRandomNumbers">
+	<div class="container">
+		<div class="text-center">
+			<h1>Comparison To Random Numbers</h1>
+		</div>
+	</div>
+</section>
+
+<section class="bg-primary padSection2" id="feelingLucky">
+	<div class="container">
+		<div class="text-center">
+			<h1>Feeling Lucky?</h1>
+			<p>Fill out your lottery numbers below and see what the most money you would've made was.</p>
+		</div>
+	</div>
+	<br><br>
+	<div class="container text-center">
+		<div class="col-lg-2">
+			<p>Number 1</p>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<p>Number 2</p>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<p>Number 3</p>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<p>Number 4</p>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<p>Number 5</p>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<p>Powerball</p>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Enter Number 1-26" aria-describedby="basic-addon1">
+			</div>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="container text-center">
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default">Run!</button>
+		</div>
+	</div>
+</section>
+
+<section class="bg-secondary padSection3" id="pickNumbers">
+	<div class="container text-center">
+		<h1>Convinced?</h1>
+	</div>
+	<br><br><br>
+	<div class="col-lg-4 text-center">
+		<p>Yes</p>
+		<hr width="35%">
+		<p>Use our algorithm:</p>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="powerball a">10</div>
+	</div>
+
+	<div class="col-lg-4 text-center">
+		<br><br><br><br>
+		<button class="btn btn-success" onclick="doPrediction();" type="button">Generate New Numbers</button>
+	</div>
+
+	<div class="col-lg-4 text-center">
+		<p>No</p>
+		<hr width="35%">
+		<p>Use random numbers:</p>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="numberCircle a">10</div>
+		<div class="powerball a">10</div>
+	</div>
+
+	<br><br><br><br><br>
+</section>
+
+</body>
+</html>
