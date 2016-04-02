@@ -138,8 +138,7 @@ function populateMainPage(){
 		
 		graphRegularFrequency(regNums);
 		graphPowerballFrequency(pbNums);
-		doPrediction();
-		
+		assignNumbers();
 	});
 	
 }
