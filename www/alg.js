@@ -30,7 +30,9 @@ function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNu
 		}
 		regularPrediction.push(randNumString);
 	}
-	
+
+    Array.sort(regularPrediction);
+
 	var powerballPrediction = pickNumber(pbNumList).randNum.toString();
 	if(powerballPrediction.length == 1){
 		powerballPrediction = "0"+powerballPrediction;

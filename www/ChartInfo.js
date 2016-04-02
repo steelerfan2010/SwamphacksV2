@@ -81,6 +81,11 @@ function setPbNums(json){
 	havePbNums = true;
 }
 
+function assignNumbers() {
+    doPrediction();
+    assignRandomNumbers();
+}
+
 function doPrediction(){
 	if(haveRegNums && havePbNums){
 		var prediction = generatePrediction(regNums, pbNums, 69, 26);
@@ -91,6 +96,38 @@ function doPrediction(){
 		document.getElementById("n5").innerHTML = prediction.regularPrediction[4];
 		document.getElementById("pb").innerHTML = prediction.powerballPrediction;
 	}
+}
+
+function assignRandomNumbers() {
+    var numbers = getRandomNumbers();
+    document.getElementById("rand1").innerHTML = numbers[0];
+    document.getElementById("rand2").innerHTML = numbers[1];
+    document.getElementById("rand3").innerHTML = numbers[2];
+    document.getElementById("rand4").innerHTML = numbers[3];
+    document.getElementById("rand5").innerHTML = numbers[4];
+    document.getElementById("randPb").innerHTML = numbers[5];
+}
+
+function getRandomNumbers() {
+    var numbers = [];
+    var i;
+    var numberSet = new Set();
+    while(numberSet.size < 5) {
+        numberSet.add(getRandomIntInclusive(1, 69));
+    }
+    numbers = Array.from(numberSet);
+    Array.sort(numbers);
+
+    numbers.push(getRandomIntInclusive(1, 26));
+    return numbers;    
+}
+
+function getRandomIntInclusive(min, max) {
+      var number = Math.floor(Math.random() * (max - min + 1)) + min;
+      if(number < 10) {
+        number = "0" + number;
+      }
+      return number;
 }
 
 function populateMainPage(){
