@@ -8,7 +8,11 @@ all: www/credentials.php
 	
 	chmod 644 ~/public_html/htaccess
 	chmod 644 ~/public_html/index.html
+	chmod 644 ~/public_html/genRandTables.html
 	chmod 644 ~/public_html/ChartInfo.js
+	chmod 644 ~/public_html/queries.js
+	chmod 644 ~/public_html/alg.js
+	chmod 644 ~/public_html/genRandTables.js
 	chmod 644 ~/public_html/MainPage.css
 	chmod 711 ~/public_html/credentials.php
 	chmod 711 ~/public_html/query.php

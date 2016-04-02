@@ -46,4 +46,4 @@ with open("jackpot.txt") as f:
         jackpotAmount = convertToMillions(eachLine[2])
         alternateJackpotAmount = convertToMillions(eachLine[4])
 
-        target.write("INSERT INTO Jackpots (drawingDate, systemNumber, jackpotAmount, alternateJackpotAmount) VALUES (DATE '" + date + "', " + systemNumber + ", " + jackpotAmount + ", " + alternateJackpotAmount + ");\n")
+        target.write("INSERT INTO Jackpots (drawingDate, systemNumber, jackpotAmount) VALUES (DATE '" + date + "', " + systemNumber + ", " + jackpotAmount + ");\n")

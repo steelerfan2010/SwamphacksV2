@@ -10,6 +10,8 @@
 		<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		
+		<script type="text/javascript" src="alg.js"></script>
+		<script type="text/javascript" src="queries.js"></script>
 		<script type="text/javascript" src="ChartInfo.js"></script>
 		<link rel=stylesheet href="MainPage.css" type="text/css" media="screen">
 
@@ -25,8 +27,8 @@
 				<h2 align="center">Frequency of Regular Numbers</h2>
 			</div>
 			<script>
-				getPowerballQuery("regular", graphRegularFrequency)
-				getPowerballQuery("regular", getRegNums)
+				doFrequencyQuery("2015-09-07", "2016-09-07", 0, graphRegularFrequency)
+				doFrequencyQuery("2015-09-07", "2016-09-07", 0, getRegNums)
 			</script>
 
 		</div>
@@ -35,8 +37,8 @@
 				<h2 align="center">Frequency of Powerball Number</h2>
 			</div>
 			<script>
-				getPowerballQuery("powerball", graphPowerballFrequency)
-				getPowerballQuery("powerball", getPbNums)
+				doFrequencyQuery("2015-09-07", "2016-09-07", 1, graphPowerballFrequency)
+				doFrequencyQuery("2015-09-07", "2016-09-07", 1, getPbNums)
 			</script>
 		</div>
 		

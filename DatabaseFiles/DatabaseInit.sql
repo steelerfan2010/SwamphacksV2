@@ -1,11 +1,13 @@
 drop table Jackpots;
 drop table Numbers;
+drop table GeneratedTickets;
+drop table RandomTickets;
+drop table Prizes;
 
 create table Jackpots (
-    theDate date,
+    drawingDate date,
     systemNumber int,
-    jackpotAmount int,
-    alternateJackpotAmount int
+    jackpotAmount int
 );
 
 create table Numbers (
@@ -13,4 +15,24 @@ create table Numbers (
     lottoNumber int,
     numberType int,
     systemNumber int 
+);
+
+create table GeneratedTickets (
+	tid int,
+    lottoNumber int,
+    numberType int,
+    systemNumber int 
+);
+
+create table RandomTickets (
+	tid int,
+    lottoNumber int,
+    numberType int,
+    systemNumber int 
+);
+
+create table Prizes (
+	regularMatches int,
+	powerballMatches int,
+	prize int
 );
