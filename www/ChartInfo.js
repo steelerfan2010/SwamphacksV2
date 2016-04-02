@@ -1,38 +1,36 @@
 function extractRegularNumbers(json) {
-	var numbers = []
+	var numbers = [];
 
 	for(var i in json) {
-        console.log(json[i].LOTTONUMBER)
-		numbers.push(json[i].LOTTONUMBER)
+		numbers.push(json[i].LOTTONUMBER);
 	}
 
-	return numbers
+	return numbers;
 }
 
 function extractPowerballNumbers(json) {
-	var numbers = []
+	var numbers = [];
 
 	for(var i in json) {
-		numbers.push(json[i].LOTTONUMBER)
+		numbers.push(json[i].LOTTONUMBER);
 	}
 
-	return numbers
+	return numbers;
 }
 
 function extractFrequency(json) {
-	var frequency = []
+	var frequency = [];
 
 	for(var i in json) {
-		frequency.push(json[i].FREQUENCY)
+		frequency.push(json[i].FREQUENCY);
 	}
 
-	return frequency
+	return frequency;
 }
 
 function graphRegularFrequency(json) {
-    console.log(json);
-	var num = extractRegularNumbers(json)
-	var freq = extractFrequency(json)
+	var num = extractRegularNumbers(json);
+	var freq = extractFrequency(json);
 
 	var data = {
 		labels: num,
@@ -50,8 +48,8 @@ function graphRegularFrequency(json) {
 }
 
 function graphPowerballFrequency(json) {
-	var num = extractPowerballNumbers(json)
-	var freq = extractFrequency(json)
+	var num = extractPowerballNumbers(json);
+	var freq = extractFrequency(json);
 
 	var data = {
 		labels: num,
@@ -73,16 +71,14 @@ var pbNums;
 var haveRegNums = false;
 var havePbNums = false;
 
-function getRegNums(json){
+function setRegNums(json){
 	regNums = json;
 	haveRegNums = true;
-	//doPrediction();
 }
 
-function getPbNums(json){
+function setPbNums(json){
 	pbNums = json;
 	havePbNums = true;
-	//doPrediction();
 }
 
 function doPrediction(){
@@ -98,19 +94,15 @@ function doPrediction(){
 }
 
 function populateMainPage(){
-
-    console.log("in pop");
-	var a = doFrequencyQuery("2015-09-07", "2016-09-07", 0, getRegNums);
-	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, getPbNums);
-    
-    console.log("done a b");
+	var a = doFrequencyQuery("2015-09-07", "2016-09-07", 0, setRegNums);
+	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, setPbNums);
+	
 	$.when(a,b).then(function(){
-        console.log("graph!");
-        console.log(regNums);
+		
 		graphRegularFrequency(regNums);
 		graphPowerballFrequency(pbNums);
-//		doPrediction();
-
+		doPrediction();
+		
 	});
-
+	
 }
