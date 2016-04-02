@@ -20,6 +20,9 @@ switch($_GET["queryType"]){
 	case "frequency":
 		$sql = getFrequencyQuery($_GET["startDate"], $_GET["endDate"], $_GET["numberType"]);
 		break;
+	case "dates":
+		$sql = getDates();
+		break;
 	case "sumJackpot":
 		$sql = getSumJackpot($_GET["winDate"], $_GET["tableName"]);
 		break;
@@ -53,6 +56,12 @@ function getFrequencyQuery($startDate, $endDate, $numberType){
 				AND numberType = " . $numberType . "
 			GROUP BY lottoNumber
 			ORDER BY lottoNumber ASC";
+	return $sql;
+}
+
+function getDates(){
+	$sql = "SELECT distinct to_char(drawingDate,'YYYY-MM-DD') as dates FROM numbers
+			ORDER BY dates ASC";
 	return $sql;
 }
 
