@@ -11,25 +11,52 @@
 }*/
 
 function getAllDates() {
-    var a = doDatesQuery(setDates);
-
-    $.when(a).then(function(){
-       var i;
-           var dropDown = $('#dropDown');
-           for(i = 0; i < gotDates.length; i++) {
-               dropDown.append("<option>" + gotDates[i].DATES + "</option>");
-           }
-    });
+    var a = doDatesQuery(addDatesToDropdown);
 }
 
-var gotDates;
-var haveDates= false;
-
-function setDates(json){
-	gotDates = json;
-	haveDates = true;
+function addDatesToDropdown(json) {
+    var i;
+    var dropDown = $('#dropDown');
+    for(i = 0; i < json.length; i++) {
+        dropDown.append("<option>" + json[i].DATES + "</option>");
+    }
 }
 
 function getMoneyInDateRange() {
-    alert("What do the params for this mean?: function doSumJackpotQuery(winDate, tableName, callback) (I know I could look at query.php and figure it out but it's late so I'm going to bed so i'd appreciate a text with the answer) Also we're [me/hogan/pay$/NG] are going to metro @2 if you wanna come");
+    var date = $('#dropDown').find("option:selected").text();
+    var randomSum = doSumJackpotQuery(date, "RandomTickets", updateRandomSum);
+    var generatedSum = doSumJackpotQuery(date, "GeneratedTickets", updateOurSum);
+
+    $.when(randomSum, generatedSum).then(function() {
+        compareTotals();
+    });
+}
+
+function updateOurSum(json) {
+    $('#ourSum').text("$" + json[0].SUM);
+}
+
+function updateRandomSum(json) {
+    $('#randomSum').text("$" + json[0].SUM);
+}
+
+function compareTotals() {
+    var ours = $('#ourSum').text();
+    var random = $('#randomSum').text();
+
+    ours = ours.substring(1);
+    random = random.substring(1);
+
+    var ourNum = parseFloat(ours);
+    var randomNum = parseFloat(random);
+
+    var difference = ourNum - randomNum;
+
+    if(difference >= 0) {
+        $('#compareTotals').text("Our algorithm made: $" + difference + " more dollars");
+    }
+    else {
+        difference = difference * -1;
+        $('#compareTotals').text("Our algorithm made: $" + difference + " less dollars");
+    }
 }
