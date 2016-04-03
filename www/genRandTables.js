@@ -2,7 +2,7 @@ function genPage(){
 	var id = 1;
 	var count = 2000;
 	
-	//document.getElementById("sys1").innerHTML = JSON.stringify(randPrediction(69,26));
+	//document.getElementById("sys1").innerHTML = JSON.stringify(doBestWinningsQuery([1,2,3,4,5],6,console.log));
 	
 	/*for(var i=0; i<100; i++){
 		document.getElementById("sys1").innerHTML = document.getElementById("sys1").innerHTML + genRandNumBetween(5, 10, [10,9,8,7]) + "<br>";

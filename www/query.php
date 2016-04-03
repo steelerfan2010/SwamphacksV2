@@ -29,6 +29,9 @@ switch($_GET["queryType"]){
 	case "sumJackpot":
 		$sql = getSumJackpot($_GET["winDate"], $_GET["tableName"]);
 		break;
+	case "bestWinnings":
+		$sql = getBestWinnings($_GET["rn1"], $_GET["rn2"], $_GET["rn3"], $_GET["rn4"], $_GET["rn5"], $_GET["pbNum"]);
+		break;
 }
 
 //Run statement
@@ -116,6 +119,69 @@ function getSumJackpot($winDate, $tableName){
 				WHERE prize > 0
 			)
 			SELECT sum(prize) as sum FROM fullTable";
+	return $sql;
+}
+
+function getBestWinnings($rn1, $rn2, $rn3, $rn4, $rn5, $pbNum){
+	$sql = "WITH
+			regMat AS (
+				SELECT drawingDate, count(drawingDate) as cntReg FROM Numbers
+				WHERE numberType = 0
+					AND (lottoNumber = " . $rn1 . "
+					OR lottoNumber = " . $rn2 . "
+					OR lottoNumber = " . $rn3 . "
+					OR lottoNumber = " . $rn4 . "
+					OR lottoNumber = " . $rn5 . ")
+				GROUP BY drawingDate
+			),
+			pbMat AS (
+			 	SELECT drawingDate, count(drawingDate) as cntPb FROM Numbers
+				WHERE numberType = 1
+					AND lottoNumber = " . $pbNum . "
+				GROUP BY drawingDate
+			),
+			totalDates AS (
+				SELECT distinct drawingDate FROM (
+					(SELECT drawingDate FROM regMat)
+					UNION
+					(SELECT drawingDate FROM pbMat)
+				)
+			),
+			matches AS (
+				SELECT tm.drawingDate, nvl(cntReg,0) AS cntReg, nvl(cntPb,0) AS cntPb FROM totalDates tm
+				LEFT JOIN regMat rm
+				ON tm.drawingDate = rm.drawingDate
+				LEFT JOIN pbMat pm
+				ON pm.drawingDate = rm.drawingDate
+			),
+			fullTable AS (
+				SELECT matches.drawingDate, cntReg, cntPb, prize, nvl(jackpotAmount,10000000) AS jackpotAmount FROM matches
+				JOIN prizes pr 
+				ON pr.regularMatches = cntReg
+					AND pr.powerballMatches = cntPb
+				LEFT JOIN Jackpots j
+				ON j.drawingDate = matches.drawingDate
+			),
+			fullWinnings AS (
+			SELECT drawingDate, cntReg, cntPb, prize, jackpotAmount,
+			CASE
+				WHEN cntReg = 5 AND cntPb = 1
+					THEN jackpotAmount
+					ELSE prize
+				END AS winnings
+				FROM fullTable
+			),
+			dateAndWinnings AS (
+				SELECT drawingDate, winnings FROM fullWinnings
+				WHERE winnings = (
+					SELECT MAX(winnings) from fullWinnings
+				)
+				ORDER BY drawingDate DESC
+			)
+			SELECT drawingDate, winnings FROM dateAndWinnings
+			WHERE drawingDate = (
+				SELECT MAX(drawingDate) FROM dateAndWinnings
+			)";
 	return $sql;
 }
 
