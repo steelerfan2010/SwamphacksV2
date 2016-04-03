@@ -42,7 +42,7 @@ with open("jackpot.txt") as f:
         eachLine = line.split()
         
         systemNumber = determineSystemNumber(eachLine[1])
-        date = convertFormat(eachLine[1])
+        date = "20" + convertFormat(eachLine[1])
         jackpotAmount = convertToMillions(eachLine[2])
         alternateJackpotAmount = convertToMillions(eachLine[4])
 
