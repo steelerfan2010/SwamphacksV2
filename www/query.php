@@ -32,6 +32,9 @@ switch($_GET["queryType"]){
 	case "bestWinnings":
 		$sql = getBestWinnings($_GET["rn1"], $_GET["rn2"], $_GET["rn3"], $_GET["rn4"], $_GET["rn5"], $_GET["pbNum"]);
 		break;
+	case "frequencyInSystem":
+		$sql = getFrequencyInSystem($_GET["startDate"], $_GET["endDate"], $_GET["numberType"], $_GET["systemNumber"]);
+		break;
 }
 
 //Run statement
@@ -182,6 +185,29 @@ function getBestWinnings($rn1, $rn2, $rn3, $rn4, $rn5, $pbNum){
 			WHERE drawingDate = (
 				SELECT MAX(drawingDate) FROM dateAndWinnings
 			)";
+	return $sql;
+}
+
+function getFrequencyInSystem($startDate, $endDate, $numberType, $systemNumber){
+	$sql = "WITH freqsTable AS (
+			SELECT lottoNumber, COUNT(*) AS frequency 
+			FROM Numbers 
+			WHERE drawingDate >= TO_DATE('" . $startDate . "','YYYY-MM-DD')
+				AND drawingDate <= TO_DATE('" . $endDate . "','YYYY-MM-DD')
+				AND numberType = " . $numberType . "
+				AND systemNumber = " . $systemNumber . "
+			GROUP BY lottoNumber
+			ORDER BY lottoNumber ASC
+			),
+			numAvaInSys AS (
+				SELECT lottoNumber FROM NumbersAvailable
+				WHERE systemNumber = " . $systemNumber . "
+					AND numberType = " . $numberType . "
+			)
+			SELECT na.lottoNumber, nvl(frequency,0) AS frequency FROM numAvaInSys na
+			LEFT JOIN freqsTable ft
+			ON na.lottoNumber = ft.lottoNumber
+			ORDER BY lottoNumber ASC";
 	return $sql;
 }
 

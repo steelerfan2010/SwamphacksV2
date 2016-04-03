@@ -74,6 +74,23 @@ function doBestWinningsQuery(regNumsArr, pbNum, callback) {
 	});
 }
 
+function doFrequencyInSystemQuery(startDate, endDate, numberType, systemNumber, callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'frequencyInSystem',
+			   'startDate':startDate,
+			   'endDate':endDate,
+			   'numberType':numberType,
+			   'systemNumber':systemNumber
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
 
 
 
