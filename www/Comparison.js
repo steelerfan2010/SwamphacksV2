@@ -1,4 +1,4 @@
-function populateMainPage(){
+/*function populateMainPage(){
 	var a = doFrequencyQuery("2015-09-07", "2016-09-07", 0, setRegNums);
 	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, setPbNums);
 
@@ -8,7 +8,7 @@ function populateMainPage(){
 		assignNumbers();
 	});
 
-}
+}*/
 
 function getAllDates() {
     var a = doDatesQuery(setDates);

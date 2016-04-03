@@ -23,6 +23,9 @@ switch($_GET["queryType"]){
 	case "dates":
 		$sql = getDates();
 		break;
+	case "datesOfSystem":
+		$sql = getDatesOfSystem($_GET["systemNumber"]);
+		break;
 	case "sumJackpot":
 		$sql = getSumJackpot($_GET["winDate"], $_GET["tableName"]);
 		break;
@@ -62,6 +65,12 @@ function getFrequencyQuery($startDate, $endDate, $numberType){
 function getDates(){
 	$sql = "SELECT distinct to_char(drawingDate,'YYYY-MM-DD') as dates FROM numbers
 			ORDER BY dates ASC";
+	return $sql;
+}
+
+function getDatesOfSystem($systemNumber){
+	$sql = "SELECT distinct to_char(drawingDate,'YYYY-MM-DD') as drawingDate FROM Numbers
+			WHERE systemNumber = " . $systemNumber . "";
 	return $sql;
 }
 
