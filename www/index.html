@@ -22,6 +22,7 @@
     <script type="text/javascript" src="queries.js"></script>
     <script type="text/javascript" src="alg.js"></script>
     <script type="text/javascript" src="Comparison.js"></script>
+    <script type="text/javascript" src="DynamicQueries.js"></script>
 
 </head>
 <body>
@@ -52,6 +53,9 @@
 				<li>
 					<a class="" href="#feelingLucky">Feeling Lucky</a>
 				</li>
+                <li>
+                    <a class="" href="#pickNumbers">Pick your Numbers</a>
+                </li>
 			</ul>
 		</div>
 	</div>
@@ -102,28 +106,21 @@
 		</div>
 		<div class="container text-center">
 			<div class="col-lg-3">
-				<h3>System Number</h3>
-				<select class="form-control">
-					<option value="one">One</option>
-					<option value="two">Two</option>
-					<option value="three">Three</option>
-					<option value="four">Four</option>
-					<option value="five">Five</option>
-					<option value="six">Six</option>
-					<option value="seven">Seven</option>
-				</select>
+                <h3>Select a System:</h3>
+                <select class="form-control" id="dynamicSystemNumber">
+                    <option value="one"  onclick="getDatesForSystem(1)">System 1</option>
+                    <option value="two"  onclick="getDatesForSystem(2)">System 2</option>
+                    <option value="three"  onclick="getDatesForSystem(3)">System 3</option>
+                    <option value="four"  onclick="getDatesForSystem(4)">System 4</option>
+                    <option value="five"  onclick="getDatesForSystem(5)">System 5</option>
+                    <option value="six"  onclick="getDatesForSystem(6)">System 6</option>
+                    <option value="seven"  onclick="getDatesForSystem(7)">System 7</option>
+                </select>
 			</div>
 
 			<div class="col-lg-3 ">
 				<h3>Select a Date</h3>
-				<select class="form-control">
-					<option value="one">1</option>
-					<option value="two">2</option>
-					<option value="three">3</option>
-					<option value="four">4</option>
-					<option value="five">5</option>
-					<option value="six">6</option>
-					<option value="seven">7</option>
+				<select class="form-control" id="systemDates">
 				</select>
 			</div>
 

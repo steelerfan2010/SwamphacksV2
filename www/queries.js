@@ -26,7 +26,7 @@ function doDatesQuery(callback) {
 	});
 }
 
-function doDatesOfSystemQuery(systemNumber) {
+function doDatesOfSystemQuery(systemNumber, callback) {
 	return $.ajax({
 		type: "GET", //Type of post
 		url: "query.php", //Where it is sent
