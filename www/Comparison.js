@@ -14,13 +14,12 @@ function getAllDates() {
     var a = doDatesQuery(setDates);
 
     $.when(a).then(function(){
-        doWork();
+       var i;
+           var dropDown = $('#dropDown');
+           for(i = 0; i < json.length; i++) {
+               dropDown.append("<option>" + json[i].DATES + "</option>");
+           }
     });
-}
-
-function doWork() {
-    console.log("hey");
-    document.getElementById("yo").innerHTML = "boobs";
 }
 
 var gotDates;
@@ -29,4 +28,8 @@ var haveDates= false;
 function setDates(json){
 	gotDates = json;
 	haveDates = true;
+}
+
+function getMoneyInDateRange() {
+    alert("What do the params for this mean?: function doSumJackpotQuery(winDate, tableName, callback) (I know I could look at query.php and figure it out but it's late so I'm going to bed so i'd appreciate a text with the answer) Also we're [me/hogan/pay$/NG] are going to metro @2 if you wanna come");
 }
