@@ -135,7 +135,6 @@ function populateMainPage(){
 	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, setPbNums);
 	
 	$.when(a,b).then(function(){
-		
 		graphRegularFrequency(regNums);
 		graphPowerballFrequency(pbNums);
 		assignNumbers();
