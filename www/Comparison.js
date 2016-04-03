@@ -16,8 +16,8 @@ function getAllDates() {
     $.when(a).then(function(){
        var i;
            var dropDown = $('#dropDown');
-           for(i = 0; i < json.length; i++) {
-               dropDown.append("<option>" + json[i].DATES + "</option>");
+           for(i = 0; i < gotDates.length; i++) {
+               dropDown.append("<option>" + gotDates[i].DATES + "</option>");
            }
     });
 }

@@ -13,6 +13,7 @@ all: www/credentials.php
 	chmod 644 ~/public_html/queries.js
 	chmod 644 ~/public_html/alg.js
 	chmod 644 ~/public_html/genRandTables.js
+	chmod 644 ~/public_html/Comparison.js
 	chmod 644 ~/public_html/MainPage.css
 	chmod 644 ~/public_html/home.css
 	chmod 644 ~/public_html/Lottery.jpg
