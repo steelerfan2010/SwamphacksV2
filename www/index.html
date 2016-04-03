@@ -105,39 +105,37 @@
 			<h1>Dynamic Queries</h1>
 		</div>
 		<div class="container text-center">
-			<div class="col-lg-3">
+			<div class="col-lg-4">
                 <h3>Select a System:</h3>
                 <select class="form-control" id="dynamicSystemNumber">
-                    <option value="one"  onclick="getDatesForSystem(1)">System 1</option>
-                    <option value="two"  onclick="getDatesForSystem(2)">System 2</option>
-                    <option value="three"  onclick="getDatesForSystem(3)">System 3</option>
-                    <option value="four"  onclick="getDatesForSystem(4)">System 4</option>
-                    <option value="five"  onclick="getDatesForSystem(5)">System 5</option>
-                    <option value="six"  onclick="getDatesForSystem(6)">System 6</option>
-                    <option value="seven"  onclick="getDatesForSystem(7)">System 7</option>
+                    <option value="one" onclick="getDatesForSystem(1)">System 1</option>
+                    <option value="two" onclick="getDatesForSystem(2)">System 2</option>
+                    <option value="three" onclick="getDatesForSystem(3)">System 3</option>
+                    <option value="four" onclick="getDatesForSystem(4)">System 4</option>
+                    <option value="five" onclick="getDatesForSystem(5)">System 5</option>
+                    <option value="six" onclick="getDatesForSystem(6)">System 6</option>
+                    <option value="seven" onclick="getDatesForSystem(7)">System 7</option>
                 </select>
 			</div>
 
-			<div class="col-lg-3 ">
-				<h3>Select a Date</h3>
-				<select class="form-control" id="systemDates">
-				</select>
+			<div class="col-lg-4">
+				<h3>Start Date:</h3>
+				<select class="form-control" id="startDates" disabled></select>
 			</div>
 
-			<div class="col-lg-3 ">
-				<h3>Some Bullshit</h3>
-				<div class="input-group">
-					<input type="text" class="form-control col-md-offset-1" placeholder="Enter Number 1-26" aria-describedby="basic-addon1">
-				</div>
+			<div class="col-lg-4">
+				<h3>End Date:</h3>
+                <select class="form-control" id="endDates" disabled></select>
 			</div>
+        </div>
 
-			<div class="col-lg-3 text-center">
-				<h3>Run Your Query</h3>
-				<div class="btn-group" role="group" aria-label="...">
-					<button type="button" class="btn btn-default">Search</button>
-				</div>
+        <div class="text-center">
+			<h3>Run Your Query</h3>
+			<div class="btn-group" role="group" aria-label="...">
+				<button type="button" class="btn btn-default">Search</button>
 			</div>
 		</div>
+
 
 	</div>
 </section>
