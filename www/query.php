@@ -35,6 +35,9 @@ switch($_GET["queryType"]){
 	case "frequencyInSystem":
 		$sql = getFrequencyInSystem($_GET["startDate"], $_GET["endDate"], $_GET["numberType"], $_GET["systemNumber"]);
 		break;
+	case "jackpotPerYear":
+		$sql = getJackpotPerYear();
+		break;
 }
 
 //Run statement
@@ -212,4 +215,26 @@ function getFrequencyInSystem($startDate, $endDate, $numberType, $systemNumber){
 	return $sql;
 }
 
+function getJackpotPerYear(){
+	$sql = "WITH jackpotYears AS (
+				SELECT distinct EXTRACT(year FROM drawingDate) AS year FROM Jackpots
+			),
+			jackpotWithYear AS (
+				SELECT drawingDate, systemNumber, jackpotAmount, year FROM Jackpots js
+				JOIN jackpotYears jy
+				ON EXTRACT(year FROM js.drawingDate) = jy.year
+			)
+			SELECT year, MAX(jackpotAmount) AS jackpotAmount FROM jackpotWithYear
+			GROUP BY year
+			ORDER BY year ASC";
+	return $sql;
+}
+
 ?>
+
+
+
+
+
+
+
