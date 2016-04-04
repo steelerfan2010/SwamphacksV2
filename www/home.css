@@ -127,3 +127,9 @@ hr {
 .title {
     visibility: hidden;
 }
+
+.centerInput {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
