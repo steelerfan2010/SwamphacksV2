@@ -22,6 +22,8 @@
     <script type="text/javascript" src="queries.js"></script>
     <script type="text/javascript" src="alg.js"></script>
     <script type="text/javascript" src="Comparison.js"></script>
+    <script type="text/javascript" src="DynamicQueries.js"></script>
+    <script type="text/javascript" src="FeelingLucky.js"></script>
 
 </head>
 <body>
@@ -52,6 +54,9 @@
 				<li>
 					<a class="" href="#feelingLucky">Feeling Lucky</a>
 				</li>
+                <li>
+                    <a class="" href="#pickNumbers">Pick your Numbers</a>
+                </li>
 			</ul>
 		</div>
 	</div>
@@ -97,54 +102,54 @@
 </section>
 
 
-<section class="bg-primary padSection" id="dynamicQueries">
+<section class="bg-primary padSection2" id="dynamicQueries">
 	<div class="container">
 		<div class="text-center">
 			<h1>Dynamic Queries</h1>
 		</div>
 		<div class="container text-center">
-			<div class="col-lg-3">
-				<h3>System Number</h3>
-				<select class="form-control">
-					<option value="one">One</option>
-					<option value="two">Two</option>
-					<option value="three">Three</option>
-					<option value="four">Four</option>
-					<option value="five">Five</option>
-					<option value="six">Six</option>
-					<option value="seven">Seven</option>
-				</select>
+			<div class="col-lg-4">
+                <h3>Select a System:</h3>
+                <select class="form-control" id="dynamicSystemNumber">
+                    <option value="one" onclick="getDatesForSystem(1)">System 1</option>
+                    <option value="two" onclick="getDatesForSystem(2)">System 2</option>
+                    <option value="three" onclick="getDatesForSystem(3)">System 3</option>
+                    <option value="four" onclick="getDatesForSystem(4)">System 4</option>
+                    <option value="five" onclick="getDatesForSystem(5)">System 5</option>
+                    <option value="six" onclick="getDatesForSystem(6)">System 6</option>
+                    <option value="seven" onclick="getDatesForSystem(7)">System 7</option>
+                </select>
 			</div>
 
-			<div class="col-lg-3 ">
-				<h3>Select a Date</h3>
-				<select class="form-control">
-					<option value="one">1</option>
-					<option value="two">2</option>
-					<option value="three">3</option>
-					<option value="four">4</option>
-					<option value="five">5</option>
-					<option value="six">6</option>
-					<option value="seven">7</option>
-				</select>
+			<div class="col-lg-4">
+				<h3>Start Date:</h3>
+				<select class="form-control" id="startDates" disabled></select>
 			</div>
 
-			<div class="col-lg-3 ">
-				<h3>Some Bullshit</h3>
-				<div class="input-group">
-					<input type="text" class="form-control col-md-offset-1" placeholder="Enter Number 1-26" aria-describedby="basic-addon1">
-				</div>
+			<div class="col-lg-4">
+				<h3>End Date:</h3>
+                <select class="form-control" id="endDates" disabled></select>
 			</div>
+        </div>
 
-			<div class="col-lg-3 text-center">
-				<h3>Run Your Query</h3>
-				<div class="btn-group" role="group" aria-label="...">
-					<button type="button" class="btn btn-default">Search</button>
-				</div>
+        <div class="text-center">
+            <br>
+			<div class="btn-group" role="group" aria-label="...">
+				<button type="button" class="btn btn-default" onclick="generateGraphs()">Generate Graphs</button>
 			</div>
 		</div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="ct-chart text-center" id="regularChart">
+            <h2 class="title">Frequency of Regular Numbers</h2>
+        </div>
 
-	</div>
+        <div class="ct-chart text-center" id="powerballChart">
+            <h2 class="title">Frequency of Powerball Numbers</h2>
+        </div>
+    </div>
+
 </section>
 
 <section class="bg-secondary padSection2" id="comparisonToRandomNumbers">
@@ -157,7 +162,7 @@
             <p>Ours</p>
             <hr width="35%">
             <p>Our Algorithm Made:</p>
-            <p>$200.00</p>
+            <p id="ourSum">?</p>
         </div>
 
         <div class="col-lg-4 text-center">
@@ -173,12 +178,12 @@
             <p>Random</p>
             <hr width="35%">
             <p>Using Random Numbers Made:</p>
-            <p>$25.00</p>
+            <p id="randomSum">?</p>
         </div>
 	</div>
 
     <div class="container text-center">
-        <h3>As you can see, ours algorithm generated $175.00 more dollars</h3>
+        <h3 id="compareTotals">Select a date to compare!</h3>
     </div>
 </section>
 
@@ -194,37 +199,37 @@
 		<div class="col-lg-2">
 			<p>Number 1</p>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+				<input type="text" id="number1" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
 			</div>
 		</div>
 		<div class="col-lg-2">
 			<p>Number 2</p>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+				<input type="text" id="number2" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
 			</div>
 		</div>
 		<div class="col-lg-2">
 			<p>Number 3</p>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+				<input type="text" id="number3" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
 			</div>
 		</div>
 		<div class="col-lg-2">
 			<p>Number 4</p>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+				<input type="text" id="number4" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
 			</div>
 		</div>
 		<div class="col-lg-2">
 			<p>Number 5</p>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
+				<input type="text" id="number5" class="form-control" placeholder="Enter Number 1-69" aria-describedby="basic-addon1">
 			</div>
 		</div>
 		<div class="col-lg-2">
 			<p>Powerball</p>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter Number 1-26" aria-describedby="basic-addon1">
+				<input type="text" id="powerball" class="form-control" placeholder="Enter Number 1-26" aria-describedby="basic-addon1">
 			</div>
 		</div>
 	</div>
@@ -233,9 +238,14 @@
 
 	<div class="container text-center">
 		<div class="btn-group" role="group" aria-label="...">
-			<button type="button" class="btn btn-default">Run!</button>
+			<button type="button" class="btn btn-default" onclick="calculateMaxWin()">Run!</button>
 		</div>
 	</div>
+
+    <br><br>
+    <div class="container text-center">
+        <p id="feelingLuckyResults"></p>
+    </div>
 </section>
 
 <section class="bg-secondary padSection3" id="pickNumbers">
