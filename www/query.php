@@ -76,7 +76,8 @@ function getDates(){
 
 function getDatesOfSystem($systemNumber){
 	$sql = "SELECT distinct to_char(drawingDate,'YYYY-MM-DD') as drawingDate FROM Numbers
-			WHERE systemNumber = " . $systemNumber . "";
+			WHERE systemNumber = " . $systemNumber . "
+			ORDER BY drawingDate ASC";
 	return $sql;
 }
 
