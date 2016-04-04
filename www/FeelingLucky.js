@@ -1,10 +1,10 @@
 function calculateMaxWin() {
-    var one = $('#number1').text();
-    var two = $('#number2').text();
-    var three = $('#number3').text();
-    var four = $('#number4').text();
-    var five = $('#number5').text();
-    var powerball = $('#powerball').text();
+    var one = $('#number1').val();
+    var two = $('#number2').val();
+    var three = $('#number3').val();
+    var four = $('#number4').val();
+    var five = $('#number5').val();
+    var powerball = $('#powerball').val();
 
     var regularNumbers = [];
     regularNumbers.push(one);
@@ -13,9 +13,11 @@ function calculateMaxWin() {
     regularNumbers.push(four);
     regularNumbers.push(five);
 
-    doBestWinningsQuery(regularNumbers, powerball, up);
+    console.log(regularNumbers);
+    doBestWinningsQuery(regularNumbers, powerball, getMaxWin);
 }
 
-function up(json) {
-    console.log(json);
+function getMaxWin(json) {
+    var feelingLucky = document.getElementById("feelingLuckyResults");
+    feelingLucky.innerHTML = "On " + json[0].DRAWINGDATE + " you would have won $" + json[0].WINNINGS + " dollars";
 }
