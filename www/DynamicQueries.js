@@ -34,12 +34,15 @@ function generateGraphs() {
     var endDate = $('#endDates').find(":selected").text();
 
     //should verify (start < end) HERE
-    var a = doFrequencyInSystemQuery(startDate, endDate, 0, systemNumber, setGenReg);
-    var b = doFrequencyInSystemQuery(startDate, endDate, 1, systemNumber, setGenPower);
+    var a = doFrequencyInSystemQuery(startDate, endDate, 0, extractedSystemNumber, setGenReg);
+    var b = doFrequencyInSystemQuery(startDate, endDate, 1, extractedSystemNumber, setGenPower);
 
     $.when(a,b).then(function() {
-        graph(regularChart, regularNumbers);
-        graph(powerballChart, powerballNumbers);
+        document.getElementsByClassName("title")[0].style.visibility = "visible";
+        document.getElementsByClassName("title")[1].style.visibility = "visible";
+
+        graphRegular(regularNumbers);
+        graphPower(powerballNumbers);
     });
 
 }
@@ -59,7 +62,7 @@ function setGenPower(json) {
     havePowerballNumbers = true;
 }
 
-function graph(id, json) {
+function graphRegular(json) {
 	var num = extractRegularNumbers(json);
 	var freq = extractFrequency(json);
 
@@ -75,5 +78,24 @@ function graph(id, json) {
 		height: 200
 	};
 
-	new Chartist.Bar('#\\id', data, options);
+	new Chartist.Bar(regularChart, data, options);
+}
+
+function graphPower(json) {
+	var num = extractPowerballNumbers(json);
+	var freq = extractFrequency(json);
+
+	var data = {
+		labels: num,
+		series: [
+			freq
+		]
+	};
+
+	var options = {
+		width: 1000,
+		height: 200
+	};
+
+	new Chartist.Bar('#powerballChart', data, options);
 }
