@@ -1,5 +1,7 @@
 function getDatesForSystem(number) {
-    //disable dates and other shit
+     $('#startDates').prop("disabled", true);
+     $('#endDates').prop("disabled", true);
+
     var a = doDatesOfSystemQuery(number, addStartDates);
     var b = doDatesOfSystemQuery(number, addEndDates);
     
@@ -13,6 +15,8 @@ function addStartDates(json) {
     var i;
     var dropDown = $('#startDates');
 
+    dropDown.children().remove();
+
     for(i = 0; i < json.length; i++) {
         dropDown.append("<option>" + json[i].DRAWINGDATE + "</option>");
     }
@@ -21,6 +25,8 @@ function addStartDates(json) {
 function addEndDates(json) {
     var i;
     var dropDown = $('#endDates');
+
+    dropDown.children().remove();
 
     for(i = 0; i < json.length; i++) {
         dropDown.append("<option>" + json[i].DRAWINGDATE + "</option>");
