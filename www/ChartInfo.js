@@ -40,7 +40,7 @@ function graphRegularFrequency(json) {
 	};
 
 	var options = {
-		width: 1000,
+//		width: 1000,
 		height: 200
 	};
 
@@ -57,12 +57,10 @@ function graphPowerballFrequency(json) {
 			freq
 		]
 	};
-
 	var options = {
-		width: 1000,
+	//	width: 1000,
 		height: 200
 	};
-
 	new Chartist.Bar('#chart2', data, options);
 }
 
