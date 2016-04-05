@@ -38,6 +38,27 @@ switch($_GET["queryType"]){
 	case "jackpotPerYear":
 		$sql = getJackpotPerYear();
 		break;
+	case "mostCommonNumbers":
+		$sql = getMostCommonNumbers($_GET["numRows"]);
+		break;
+	case "threeRuns":
+		$sql = getThreeRuns($_GET["numRows"]);
+		break;
+	case "fourRuns":
+		$sql = getFourRuns();
+		break;
+	case "pairs":
+		$sql = getPairs($_GET["numRows"]);
+		break;
+	case "triplets":
+		$sql = getTriplets($_GET["numRows"]);
+		break;
+	case "percentEvenOdd":
+		$sql = getpercentEvenOdd();
+		break;
+	case "allEvenOrOdd":
+		$sql = getAllEvenOrOdd();
+		break;
 }
 
 //Run statement
@@ -227,6 +248,116 @@ function getJackpotPerYear(){
 			SELECT year, MAX(jackpotAmount) AS jackpotAmount FROM jackpotWithYear
 			GROUP BY year
 			ORDER BY year ASC";
+	return $sql;
+}
+
+function getMostCommonNumbers($numRows){
+	$sql = "SELECT * FROM (
+				SELECT lottoNumber, COUNT(*) AS cnt FROM Numbers
+				GROUP BY lottoNumber
+				ORDER BY COUNT(*) DESC, lottoNumber ASC
+			)
+			WHERE rownum <= " . $numRows;
+	return $sql;
+}
+
+function getThreeRuns($numRows){
+	$sql = "SELECT * FROM (
+				WITH runs AS (
+				SELECT n1.drawingDate, n1.lottoNumber AS ln1, n2.lottoNumber AS ln2, n3.lottoNumber as ln3 FROM Numbers n1
+				JOIN Numbers n2 on n1.drawingDate = n2.drawingDate
+					AND n2.lottoNumber = n1.lottoNumber + 1
+				JOIN Numbers n3 on n1.drawingDate = n3.drawingDate
+					AND n3.lottoNumber = n2.lottoNumber + 1
+				)
+				SELECT ln1 AS lottoNumber1, ln2 AS lottoNumber2, ln3 AS lottoNumber3, COUNT(*) AS frequency FROM runs
+				GROUP BY ln1, ln2, ln3
+				ORDER BY frequency DESC
+			)
+			WHERE rownum <= " . $numRows;
+	return $sql;
+}
+
+function getFourRuns(){
+	$sql = "SELECT n1.drawingDate,
+			n1.lottoNumber AS lottoNumber1,
+			n2.lottoNumber AS lottoNumber2,
+			n3.lottoNumber AS lottoNumber3,
+			n4.lottoNumber AS lottoNumber4 FROM Numbers n1
+			JOIN Numbers n2 ON n1.drawingDate = n2.drawingDate
+			  AND n2.lottoNumber = n1.lottoNumber + 1
+			JOIN Numbers n3 ON n1.drawingDate = n3.drawingDate
+			  AND n3.lottoNumber = n2.lottoNumber + 1
+			JOIN Numbers n4 ON n1.drawingDate = n4.drawingDate
+			  AND n4.lottoNumber = n3.lottoNumber + 1";
+	return $sql;
+}
+
+function getPairs($numRows){
+	$sql = "SELECT * FROM (
+				SELECT n1.lottoNumber AS lottoNumber1, n2.lottoNumber AS lottoNumber2, COUNT(*) AS cnt FROM Numbers n1
+				JOIN Numbers n2
+				ON n1.drawingDate = n2.drawingDate
+					AND n1.lottoNumber < n2.lottoNumber
+				GROUP BY n1.lottoNumber, n2.lottoNumber
+				ORDER BY COUNT(*) DESC, n1.lottoNumber ASC
+			)
+			WHERE rownum <= " . $numRows;
+	return $sql;
+}
+
+function getTriplets($numRows){
+	$sql = "SELECT * FROM (
+				SELECT n1.lottoNumber AS lottoNumber1, n2.lottoNumber AS lottoNumber2, n3.lottoNumber AS lottoNumber3, COUNT(*) AS cnt FROM Numbers n1
+				JOIN Numbers n2
+				ON n1.drawingDate = n2.drawingDate
+					AND n1.lottoNumber < n2.lottoNumber
+				JOIN Numbers n3
+				ON n2.drawingDate = n3.drawingDate
+					AND n2.lottoNumber < n3.lottoNumber
+				GROUP BY n1.lottoNumber, n2.lottoNumber, n3.lottoNumber
+				ORDER BY COUNT(*) DESC, n1.lottoNumber ASC, n2.lottoNumber ASC
+			)
+			WHERE rownum <= " . $numRows;
+	return $sql;
+}
+
+function getPercentEvenOdd(){
+	$sql = "SELECT ROUND(evenno/totalno*100,3) AS percentEven, ROUND(oddno/totalno*100,3) AS percentOdd
+			FROM
+			(
+				SELECT COUNT(*) AS evenno
+				FROM Numbers 
+				WHERE MOD(lottonumber, 2) = 1 
+			),
+			(
+				SELECT COUNT(*) AS totalno from Numbers
+			),
+			(
+				SELECT COUNT(*) AS oddno
+				FROM Numbers 
+				WHERE MOD(lottonumber, 2) != 1 
+			)";
+	return $sql;
+}
+
+function getAllEvenOrOdd(){
+	$sql = "WITH allOddOrEven AS (
+				SELECT drawingDate, oddOrEven, COUNT(*) AS cnt FROM (
+					SELECT drawingDate,
+					MOD(lottoNumber,2) AS oddOrEven
+					FROM Numbers
+				)
+				GROUP BY drawingDate, oddOrEven
+				HAVING COUNT(*) = 6
+			)
+			SELECT * FROM (
+				(SELECT COUNT(*) AS numAllEven FROM allOddOrEven
+				WHERE oddOrEven = 0)
+				CROSS JOIN
+				(SELECT COUNT(*) AS numAllOdd FROM allOddOrEven
+				WHERE oddOrEven = 1)
+			)";
 	return $sql;
 }
 

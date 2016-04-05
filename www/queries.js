@@ -103,5 +103,102 @@ function doJackpotPerYearQuery(callback) {
 	});
 }
 
+//--------------------
+
+function doMostCommonNumbersQuery(numRows, callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'mostCommonNumbers',
+			   'numRows':numRows
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
+function doThreeRunsQuery(numRows, callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'threeRuns',
+			   'numRows':numRows
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
+function doFourRunsQuery(callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'fourRuns'
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
+function doPairsQuery(numRows, callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'pairs',
+			   'numRows':numRows
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
+function doTripletsQuery(numRows, callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'triplets',
+			   'numRows':numRows
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
+function doPercentEvenOddQuery(callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'percentEvenOdd'
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
+function doAllEvenOrOddQuery(callback) {
+	return $.ajax({
+		type: "GET", //Type of post
+		url: "query.php", //Where it is sent
+		dataType: "json",
+		data: {'queryType':'allEvenOrOdd'
+			  }, //This is sent TO THE SERVER
+		success: function (msg) { //Msg is returned FROM THE SERVER!
+			callback(msg);
+		}
+	});
+}
+
 
 
