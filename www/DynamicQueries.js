@@ -2,13 +2,17 @@ function getDatesForSystem(number) {
      $('#startDates').prop("disabled", true);
      $('#endDates').prop("disabled", true);
 
-    var a = doDatesOfSystemQuery(number, addStartDates);
-    var b = doDatesOfSystemQuery(number, addEndDates);
+    var a = doDatesOfSystemQuery(number, updateDates);
     
-    $.when(a,b).then(function() {
+    $.when(a).then(function() {
         $('#startDates').prop("disabled", false);
         $('#endDates').prop("disabled", false);
     });
+}
+
+function updateDates(json) {
+    addStartDates(json);
+    addEndDates(json);
 }
 
 function addStartDates(json) {

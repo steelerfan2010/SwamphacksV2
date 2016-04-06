@@ -20,6 +20,7 @@ all: www/credentials.php
 	chmod 644 ~/public_html/MainPage.css
 	chmod 644 ~/public_html/home.css
 	chmod 644 ~/public_html/Lottery.jpg
+	chmod 644 ~/public_html/PowerballPrizes.png
 	chmod 711 ~/public_html/credentials.php
 	chmod 711 ~/public_html/query.php
 	

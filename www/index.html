@@ -189,28 +189,39 @@
         <h2>Most Common Lotto Numbers</h2>
     </div>
 
-    <!--<div class="ct-chart text-center" id="threeRuns">-->
-        <!--<h2>Three Runs</h2>-->
-    <!--</div>-->
-
-    <div class="ct-chart text-center" id="percentEvenOdd">
-        <h2>Percent of Even and Odd Numbers</h2>
+    <div class="ct-chart text-center" id="threeRuns">
+        <h2>Three Runs</h2>
     </div>
 
-    <div class="ct-chart text-center" id="allEvenOrOdd">
-        <h2>All Even or Odd Numbers</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ct-chart text-center" id="percentEvenOdd">
+                <h2>Percent of Even and Odd Numbers</h2>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="ct-chart text-center" id="allEvenOrOdd">
+                <h2>All Even or Odd Numbers</h2>
+            </div>
+        </div>
     </div>
 
-    <script>
-		populateMainPage()
-    </script>
+    <div class="ct-chart text-center" id="pairs">
+        <h2>Most Common Pairs of Numbers</h2>
+    </div>
+
+    <div class="ct-chart text-center" id="trips">
+        <h2>Most Common Groups of Three Numbers</h2>
+    </div>
+
     <script>
         populateInterestingFacts()
 		//Testing Area
 		//Will, this is an example of all the new queries.
 		//Uncomment and you will see them run on main page.
 
-		doJackpotPerYearQuery(console.log);
+//		doJackpotPerYearQuery(console.log);
 		//doMostCommonNumbersQuery(10,console.log);
 		//doThreeRunsQuery(10,console.log);
 		//doFourRunsQuery(console.log);
