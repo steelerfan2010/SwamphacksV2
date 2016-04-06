@@ -11,13 +11,15 @@
 
  	var options = {
  //		width: 1000,
- 		height: 200
+ 		height: 200,
+        low: 0,
+        showArea: true
  	};
 
  	new Chartist.Line('#jackpotLineGraph', data, options);
  }
 
- function getYear(json) {
+ function getYears(json) {
     var years = [];
 
     for(var i in json) {
@@ -36,3 +38,8 @@
 
  	return jackpots;
  }
+
+function populateInterestingFacts() {
+    var a = doJackpotPerYearQuery(graphJackpotLine);
+}
+

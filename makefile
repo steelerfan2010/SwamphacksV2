@@ -16,6 +16,7 @@ all: www/credentials.php
 	chmod 644 ~/public_html/Comparison.js
 	chmod 644 ~/public_html/DynamicQueries.js
 	chmod 644 ~/public_html/FeelingLucky.js
+	chmod 644 ~/public_html/InterestingFacts.js
 	chmod 644 ~/public_html/MainPage.css
 	chmod 644 ~/public_html/home.css
 	chmod 644 ~/public_html/Lottery.jpg
