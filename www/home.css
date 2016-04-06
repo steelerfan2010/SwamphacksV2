@@ -60,6 +60,9 @@ header {
     padding: 200px;
 }
 
+.padSectionHeading {
+    padding: 25px;
+}
 .bg-primary {
     background: #00D8F0;
 }
@@ -68,12 +71,8 @@ header {
     background: #F4E2CE;
 }
 
-p {
-    font-size: 32px;
-}
 
 h1 {
-
     font-size: 80px;
 }
 
