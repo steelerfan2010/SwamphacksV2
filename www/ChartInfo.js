@@ -85,15 +85,14 @@ function assignNumbers() {
 }
 
 function doPrediction(){
-	if(haveRegNums && havePbNums){
-		var prediction = generatePrediction(regNums, pbNums, 69, 26);
-		document.getElementById("n1").innerHTML = prediction.regularPrediction[0];
-		document.getElementById("n2").innerHTML = prediction.regularPrediction[1];
-		document.getElementById("n3").innerHTML = prediction.regularPrediction[2];
-		document.getElementById("n4").innerHTML = prediction.regularPrediction[3];
-		document.getElementById("n5").innerHTML = prediction.regularPrediction[4];
-		document.getElementById("pb").innerHTML = prediction.powerballPrediction;
-	}
+	var prediction = generatePrediction(regNums, pbNums, 69, 26);
+	console.log(prediction);
+	document.getElementById("n1").innerHTML = prediction.regularPrediction[0];
+	document.getElementById("n2").innerHTML = prediction.regularPrediction[1];
+	document.getElementById("n3").innerHTML = prediction.regularPrediction[2];
+	document.getElementById("n4").innerHTML = prediction.regularPrediction[3];
+	document.getElementById("n5").innerHTML = prediction.regularPrediction[4];
+	document.getElementById("pb").innerHTML = prediction.powerballPrediction;
 }
 
 function assignRandomNumbers() {

@@ -1,4 +1,5 @@
 function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNum){
+	var i;
 	regNumList = [];
 	for(i = 1; i <= maxRegNum; i++){
 		regNumList.push(i);
