@@ -32,7 +32,7 @@ function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNu
 		regularPrediction.push(randNumString);
 	}
 
-    Array.sort(regularPrediction);
+    insertionSort(regularPrediction);
 
 	var powerballPrediction = pickNumber(pbNumList).randNum.toString();
 	if(powerballPrediction.length == 1){
@@ -41,6 +41,16 @@ function generatePrediction(regularNumbers, powerballNumbers, maxRegNum, maxPbNu
 	
 	return {regularPrediction:regularPrediction, powerballPrediction:powerballPrediction};
 	
+}
+
+function insertionSort (a) {
+    for (var i = 0; i < a.length; i++) {
+        var k = a[i];
+        for (var j = i; j > 0 && k < a[j - 1]; j--)
+            a[j] = a[j - 1];
+        a[j] = k;
+    }
+    return a;
 }
 
 function pickNumber(numbers){

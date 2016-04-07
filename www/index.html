@@ -11,10 +11,13 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     
+
+<!-- Chartist js -->
+	<link rel="stylesheet" type="text/css" href="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.min.css">
+
 <link rel="stylesheet" href="home.css" type="text/css">
 
-	<!-- Chartist js -->
-	<link rel="stylesheet" type="text/css" href="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.min.css">
+
 	<script type="text/javascript" src="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.js"></script>
 
 	<!-- My javascript -->
@@ -191,10 +194,39 @@
         <h2>Most Common Lotto Numbers</h2>
     </div>
 
-    <div class="ct-chart text-center" id="threeRuns">
-        <h2>Three Runs</h2>
-    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Three Runs</h2>
+                <table class="table" id="threeTable" align="center">
+                    <thead>
+                        <tr>
+                            <th>Numbers</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
 
+                    <tbody>
+                    </tbody>
+                </table>
+        </div>
+
+        <div class="col-lg-6">
+            <h2>Four Runs</h2>
+            <table class="table" id="fourTable" align="center">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Numbers</th>
+                    </tr>        
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
     <div class="row">
         <div class="col-lg-6">
             <div class="ct-chart text-center" id="percentEvenOdd">
@@ -224,6 +256,7 @@
     </div>
 
     <script>
+        populateMainPage()
         populateInterestingFacts()
 		//Testing Area
 		//Will, this is an example of all the new queries.
@@ -249,7 +282,7 @@
 		</div>
 		<div class="container text-center">
 			<div class="col-lg-4">
-                <h3>Select a System:</h3>
+                <h4>Select a System:</h4>
                 <select class="form-control" id="dynamicSystemNumber">
                     <option value="one" onclick="getDatesForSystem(1)">System 1</option>
                     <option value="two" onclick="getDatesForSystem(2)">System 2</option>
@@ -262,12 +295,12 @@
 			</div>
 
 			<div class="col-lg-4">
-				<h3>Start Date:</h3>
+				<h4>Start Date:</h4>
 				<select class="form-control" id="startDates" disabled></select>
 			</div>
 
 			<div class="col-lg-4">
-				<h3>End Date:</h3>
+				<h4>End Date:</h4>
                 <select class="form-control" id="endDates" disabled></select>
 			</div>
         </div>
@@ -298,14 +331,25 @@
 			<h1>Comparison To Random Numbers</h1>
 		</div>
         <br><br>
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-6 text-center">
             <p>Ours</p>
             <hr width="35%">
             <p>Our Algorithm Made:</p>
             <p id="ourSum">?</p>
+            <br>
         </div>
 
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-6 text-center">
+            <p>Random</p>
+            <hr width="35%">
+            <p>Using Random Numbers Made:</p>
+            <p id="randomSum">?</p>
+            <br>
+        </div>
+	</div>
+
+    <div class="container-fluid text-center">
+        <div class="text-center">
             <br>
             <h3>Select a Date:</h3>
             <select id="dropDown"></select>
@@ -313,16 +357,10 @@
             <br><br>
             <button class="btn btn-success" onclick="getMoneyInDateRange();" type="button">See Results</button>
         </div>
+    </div>
 
-        <div class="col-lg-4 text-center">
-            <p>Random</p>
-            <hr width="35%">
-            <p>Using Random Numbers Made:</p>
-            <p id="randomSum">?</p>
-        </div>
-	</div>
-
-    <div class="container text-center">
+    <div class="container-fluid text-center">
+        <br><br>
         <h3 id="compareTotals">Select a date to compare!</h3>
     </div>
 </section>
@@ -396,37 +434,41 @@
 	</div>
 	<br><br><br>
     <div class="row">
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-6 text-center">
             <p>Yes</p>
-            <hr width="35%">
+            <hr width="20%">
             <p>Use our algorithm:</p>
+            <br>
             <div class="numberCircle a" id="n1">10</div>
             <div class="numberCircle a" id="n2">10</div>
             <div class="numberCircle a" id="n3">10</div>
             <div class="numberCircle a" id="n4">10</div>
             <div class="numberCircle a" id="n5">10</div>
             <div class="powerball a" id="pb">10</div>
+            <br><br><br>
         </div>
-
-        <div class="col-lg-4 text-center">
-            <br><br><br><br>
-            <button class="btn btn-success" onclick="assignNumbers();" type="button">Generate New Numbers</button>
-        </div>
-
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-6 text-center">
             <p>No</p>
-            <hr width="35%">
+            <hr width="20%">
             <p>Use random numbers:</p>
+            <br>
             <div class="numberCircle a" id="rand1">10</div>
             <div class="numberCircle a" id="rand2">10</div>
             <div class="numberCircle a" id="rand3">10</div>
             <div class="numberCircle a" id="rand4">10</div>
             <div class="numberCircle a" id="rand5">10</div>
             <div class="powerball a" id="randPb">10</div>
+            <br><br><br>
         </div>
     </div>
+
+        <div class="text-center">
+            <button class="btn btn-success" onclick="assignNumbers();" type="button">Generate New Numbers</button>
+        </div>
+
+
 	<br><br><br><br><br>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
         <a class="smoothScroll" href="#topOfPage">
         <button type="button" class="btn btn-default" onclick="">Back To Top</button>
         </a>

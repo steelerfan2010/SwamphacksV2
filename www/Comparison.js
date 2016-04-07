@@ -54,9 +54,11 @@ function compareTotals() {
 
     if(difference >= 0) {
         $('#compareTotals').text("Our algorithm made: $" + difference + " more dollars");
+        $('#compareTotals').css({"color":"green"});
     }
     else {
         difference = difference * -1;
         $('#compareTotals').text("Our algorithm made: $" + difference + " less dollars");
+        $('#compareTotals').css({"color":"red"});
     }
 }

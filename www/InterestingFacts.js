@@ -24,7 +24,7 @@
     }, {
           low: 0,
           height: 400,
-        chartPadding: 60,
+        chartPadding: 70,
         labelOffset: 50,
           showArea: true,
           showPoint: false,
@@ -61,7 +61,7 @@ function graphMostCommonNumbers(json) {
 	var options = {
         low: 225,
 		height: 400,
-        chartPadding: 60,
+        chartPadding: 70,
         labelOffset: 50
 	};
 
@@ -87,6 +87,40 @@ function graphThreeRuns(json) {
     new Chartist.Bar('#threeRuns', data, options);
 }
 
+function displayThreeRuns(json) {
+    var numbers = concateLottoNumbers(json);
+    var frequency = getFrequency(json);
+    
+    var table = document.getElementById("threeTable");
+    
+    for(var i = 1; i < numbers.length + 1; i++) {
+        var row = table.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        cell1.innerHTML = numbers[i - 1];
+        cell2.innerHTML = frequency[i - 1];
+    }
+
+}
+
+function displayFourRuns(json) {
+    var numbers = concateLottoNumbers4(json);
+    var drawingDate = getDrawingDate(json);
+    console.log(numbers);
+    console.log(drawingDate);
+    var table = document.getElementById("fourTable");
+    
+    for(var i = 1; i < numbers.length + 1; i++) {
+        var row = table.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        cell1.innerHTML = drawingDate[i - 1];
+        cell2.innerHTML = numbers[i - 1];
+    }
+}
+
 function graphPairs(json) {
     var pairs = concatePairs(json);
     var count = getCount(json); 
@@ -99,7 +133,7 @@ function graphPairs(json) {
     var options = {
         horizontalBars: true,
         low: 32,
-        chartPadding: 30,
+        chartPadding: 60,
         labelOffset: 50,
         height: 400
     };
@@ -119,7 +153,7 @@ function graphTGD(json) {
     var options = {
         low: 6, 
         horizontalBars: true,
-        chartPadding: 30,
+        chartPadding: 60,
         labelOffset: 50,
         height: 400
     };
@@ -175,6 +209,28 @@ function concateLottoNumbers(json) {
     return concateLottoNumbers;
 }
 
+function concateLottoNumbers4(json) {
+    var concateLottoNumbers = [];
+
+    for(var i in json) {
+        concateLottoNumbers.push("(" + json[i].LOTTONUMBER1 + "," 
+                + json[i].LOTTONUMBER2 + "," + json[i].LOTTONUMBER3 + "," +
+                + json[i].LOTTONUMBER4 + ")" );
+    }
+
+    return concateLottoNumbers;
+}
+
+function getDrawingDate(json) {
+    var drawingDate = [];
+
+    for(var i in json) {
+        drawingDate.push(json[i].DRAWINGDATE);
+    }
+
+    return drawingDate;
+}
+
 function getFrequency(json) {
     var frequency = [];
 
@@ -228,18 +284,10 @@ function getCount(json) {
 function populateInterestingFacts() {
     var a = doJackpotPerYearQuery(graphJackpotLine);
     var b = doMostCommonNumbersQuery(10, graphMostCommonNumbers);
-    var c = doThreeRunsQuery(10, graphThreeRuns);
+    var c = doThreeRunsQuery(10, displayThreeRuns);
     var d = doPairsQuery(10, graphPairs);
     var e = doTripletsQuery(10, graphTGD);
     var f = doPercentEvenOddQuery(graphPercentEvenOdd);
     var g = doAllEvenOrOddQuery(graphAllEvenOrOdd);
-
-    $.when(a,b,c,d,e,f,g).then(function()  {
-        var z = document.getElementsByClassName("ct-label");
-        var i;
-        for(i = 0; i < z.length; i++) {
-            console.log(z[i]);
-            z[i].style.fontSize = "12px";
-        }
-    });
+    var h = doFourRunsQuery(displayFourRuns);
 }
