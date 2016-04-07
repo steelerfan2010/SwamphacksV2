@@ -69,7 +69,6 @@
 <section class="bg-primary">
 	<div class="background"></div>
 	<div class="container text-center">
-		<br><br><br><br>
         <div id="topOfPage"></div>
 		<br><br><br><br>
 		<strong>
@@ -290,10 +289,11 @@
 		<div class="text-center">
 			<h1>Prevalence of Numbers Over Time</h1>
 		</div>
-		<div class="container text-center">
+		<div class="container-fluid text-center">
 			<div class="col-lg-4">
                 <h4>Select a System:</h4>
                 <select class="form-control" id="dynamicSystemNumber">
+                    <option value="" disabled selected>Pick a system</option>
                     <option value="one" onclick="getDatesForSystem(1)">System 1</option>
                     <option value="two" onclick="getDatesForSystem(2)">System 2</option>
                     <option value="three" onclick="getDatesForSystem(3)">System 3</option>
