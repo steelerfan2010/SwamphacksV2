@@ -84,7 +84,6 @@ function graphRegular(json) {
 	};
 
 	var options = {
-		width: 1000,
 		height: 200
 	};
 
@@ -103,7 +102,6 @@ function graphPower(json) {
 	};
 
 	var options = {
-		width: 1000,
 		height: 200
 	};
 

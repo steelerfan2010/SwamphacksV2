@@ -135,6 +135,9 @@ function graphPairs(json) {
         low: 32,
         chartPadding: 60,
         labelOffset: 50,
+        axisX: {
+            onlyInteger: true
+        },
         height: 400
     };
 
@@ -151,10 +154,13 @@ function graphTGD(json) {
     };
 
     var options = {
-        low: 6, 
+        low: 6,
         horizontalBars: true,
         chartPadding: 60,
         labelOffset: 50,
+        axisX: {
+            onlyInteger: true
+        },
         height: 400
     };
 
