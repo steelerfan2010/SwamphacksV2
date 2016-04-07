@@ -49,15 +49,17 @@
 function graphMostCommonNumbers(json) {
     var lottoNumbers = getLottoNumber(json);
 	var count = getCount(json);
+    var newScale = [225, 250, 275];
 
 	var data = {
 		labels: lottoNumbers,
 		series: [
-			count
+            count
 		]
 	};
 
 	var options = {
+        low: 225,
 		height: 400,
         chartPadding: 60,
         labelOffset: 50
@@ -96,6 +98,7 @@ function graphPairs(json) {
 
     var options = {
         horizontalBars: true,
+        low: 32,
         chartPadding: 30,
         labelOffset: 50,
         height: 400
@@ -114,6 +117,7 @@ function graphTGD(json) {
     };
 
     var options = {
+        low: 6, 
         horizontalBars: true,
         chartPadding: 30,
         labelOffset: 50,
