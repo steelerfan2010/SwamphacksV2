@@ -2,29 +2,13 @@
  	var years = getYears(json);
  	var jackpots = getJackpotAmount(json);
 
-    /*
- 	var data = {
- 		labels: years,
- 		series: [
- 			jackpots
- 		]
- 	};
-
- 	var options = {
- 		height: 200,
-        low: 0,
-        showArea: true
- 	};
-
- 	new Chartist.Line('#jackpotLineGraph', data, options);
-    */
     var chart = new Chartist.Line('#jackpotLineGraph', {
         labels: years,
           series: [jackpots]
     }, {
           low: 0,
           height: 400,
-        chartPadding: 70,
+        chartPadding: 80,
         labelOffset: 50,
           showArea: true,
           showPoint: false,
@@ -61,7 +45,7 @@ function graphMostCommonNumbers(json) {
 	var options = {
         low: 225,
 		height: 400,
-        chartPadding: 70,
+        chartPadding: 80,
         labelOffset: 50
 	};
 

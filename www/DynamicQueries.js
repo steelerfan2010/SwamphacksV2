@@ -1,4 +1,6 @@
-function getDatesForSystem(number) {
+function getDatesForSystem() {
+    var number = $('#dynamicSystemNumber').val();
+
      $('#startDates').prop("disabled", true);
      $('#endDates').prop("disabled", true);
 
