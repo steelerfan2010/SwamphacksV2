@@ -40,7 +40,6 @@ function graphRegularFrequency(json) {
 	};
 
 	var options = {
-//		width: 1000,
 		height: 200
 	};
 
@@ -58,7 +57,6 @@ function graphPowerballFrequency(json) {
 		]
 	};
 	var options = {
-	//	width: 1000,
 		height: 200
 	};
 	new Chartist.Bar('#chart2', data, options);
@@ -85,15 +83,13 @@ function assignNumbers() {
 }
 
 function doPrediction(){
-	if(haveRegNums && havePbNums){
-		var prediction = generatePrediction(regNums, pbNums, 69, 26);
-		document.getElementById("n1").innerHTML = prediction.regularPrediction[0];
-		document.getElementById("n2").innerHTML = prediction.regularPrediction[1];
-		document.getElementById("n3").innerHTML = prediction.regularPrediction[2];
-		document.getElementById("n4").innerHTML = prediction.regularPrediction[3];
-		document.getElementById("n5").innerHTML = prediction.regularPrediction[4];
-		document.getElementById("pb").innerHTML = prediction.powerballPrediction;
-	}
+	var prediction = generatePrediction(regNums, pbNums, 69, 26);
+	document.getElementById("n1").innerHTML = prediction.regularPrediction[0];
+	document.getElementById("n2").innerHTML = prediction.regularPrediction[1];
+	document.getElementById("n3").innerHTML = prediction.regularPrediction[2];
+	document.getElementById("n4").innerHTML = prediction.regularPrediction[3];
+	document.getElementById("n5").innerHTML = prediction.regularPrediction[4];
+	document.getElementById("pb").innerHTML = prediction.powerballPrediction;
 }
 
 function assignRandomNumbers() {
@@ -110,14 +106,27 @@ function getRandomNumbers() {
     var numbers = [];
     var i;
     var numberSet = new Set();
+
     while(numberSet.size < 5) {
         numberSet.add(getRandomIntInclusive(1, 69));
     }
+
     numbers = Array.from(numberSet);
-    Array.sort(numbers);
+    insertionSort(numbers);
 
     numbers.push(getRandomIntInclusive(1, 26));
     return numbers;    
+}
+
+function insertionSort (a) {
+    for (var i = 0; i < a.length; i++) {
+        var k = a[i];
+        for (var j = i; j > 0 && k < a[j - 1]; j--)
+            a[j] = a[j - 1];
+        a[j] = k;
+    }
+    console.log(a);
+    return a;
 }
 
 function getRandomIntInclusive(min, max) {
@@ -133,8 +142,6 @@ function populateMainPage(){
 	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, setPbNums);
 	
 	$.when(a,b).then(function(){
-		graphRegularFrequency(regNums);
-		graphPowerballFrequency(pbNums);
 		assignNumbers();
 	});
 	

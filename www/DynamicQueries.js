@@ -1,17 +1,25 @@
 function getDatesForSystem(number) {
-    //disable dates and other shit
-    var a = doDatesOfSystemQuery(number, addStartDates);
-    var b = doDatesOfSystemQuery(number, addEndDates);
+     $('#startDates').prop("disabled", true);
+     $('#endDates').prop("disabled", true);
+
+    var a = doDatesOfSystemQuery(number, updateDates);
     
-    $.when(a,b).then(function() {
+    $.when(a).then(function() {
         $('#startDates').prop("disabled", false);
         $('#endDates').prop("disabled", false);
     });
 }
 
+function updateDates(json) {
+    addStartDates(json);
+    addEndDates(json);
+}
+
 function addStartDates(json) {
     var i;
     var dropDown = $('#startDates');
+
+    dropDown.children().remove();
 
     for(i = 0; i < json.length; i++) {
         dropDown.append("<option>" + json[i].DRAWINGDATE + "</option>");
@@ -21,6 +29,8 @@ function addStartDates(json) {
 function addEndDates(json) {
     var i;
     var dropDown = $('#endDates');
+
+    dropDown.children().remove();
 
     for(i = 0; i < json.length; i++) {
         dropDown.append("<option>" + json[i].DRAWINGDATE + "</option>");
@@ -74,7 +84,6 @@ function graphRegular(json) {
 	};
 
 	var options = {
-		width: 1000,
 		height: 200
 	};
 
@@ -93,7 +102,6 @@ function graphPower(json) {
 	};
 
 	var options = {
-		width: 1000,
 		height: 200
 	};
 
