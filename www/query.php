@@ -59,6 +59,9 @@ switch($_GET["queryType"]){
 	case "allEvenOrOdd":
 		$sql = getAllEvenOrOdd();
 		break;
+    case "getTotalTuples":
+        $sql = getTotalTuples();
+        break;
 }
 
 //Run statement
@@ -359,6 +362,14 @@ function getAllEvenOrOdd(){
 				WHERE oddOrEven = 1)
 			)";
 	return $sql;
+}
+
+function getTotalTuples() {
+    $sql = "select table_name, to_number(extractvalue(xmltype(
+            dbms_xmlgen.getxml('select count(*) c from '||table_name)),'/ROWSET/ROW/C')) 
+            count from user_tables";
+
+    return $sql;
 }
 
 ?>

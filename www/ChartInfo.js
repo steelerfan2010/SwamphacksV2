@@ -140,9 +140,74 @@ function getRandomIntInclusive(min, max) {
 function populateMainPage(){
 	var a = doFrequencyQuery("2015-09-07", "2016-09-07", 0, setRegNums);
 	var b = doFrequencyQuery("2015-09-07", "2016-09-07", 1, setPbNums);
+    displayTotalTuples();
 	
 	$.when(a,b).then(function(){
 		assignNumbers();
 	});
 	
+}
+
+function displayTotalTuples() {
+    doGetTotalTuples(displayTupleTable);
+}
+
+function displayTupleTable(json) {
+    console.log(json);
+    var tableName = extractTableName(json);
+    var count = extractCount(json);
+
+    var table = document.getElementById("tupleTable");
+
+    var i;
+    for(i = 1; i < tableName.length + 1; i++) {
+        var row = table.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        cell1.innerHTML = tableName[i - 1];
+        cell2.innerHTML = count[i - 1];
+    }
+
+    /*
+    var row = table.insertRow(i);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+
+    cell1.innerHTML = "TOTAL TUPLES";
+    cell2.innerHTML = getSum(json);
+    */
+
+    var totalTuples = document.getElementById("totalTuples");
+    totalTuples.innerHTML = getSum(json);
+}
+
+function getSum(json) {
+    var sum = 0;
+
+    for(var i in json) {
+        sum += parseInt(json[i].COUNT);
+    }
+
+    return sum;
+}
+
+function extractCount(json) {
+	var count = [];
+
+	for(var i in json) {
+		count.push(json[i].COUNT);
+	}
+
+	return count;
+}
+
+function extractTableName(json) {
+	var tableName = [];
+
+	for(var i in json) {
+		tableName.push(json[i].TABLE_NAME);
+	}
+
+	return tableName;
 }

@@ -200,5 +200,15 @@ function doAllEvenOrOddQuery(callback) {
 	});
 }
 
-
+function doGetTotalTuples(callback) {
+    return $.ajax({
+        type: "GET",
+        url: "query.php",
+        dataType: "json",
+        data: {'queryType':'getTotalTuples'},
+        success: function (msg) {
+            callback(msg);
+        }
+    });
+}
 
